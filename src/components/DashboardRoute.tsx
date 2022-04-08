@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getDailyQuote } from "../services/ZenQuotesService";
 import ZenQuoteResponse from "../model/ZenQuoteResponse";
-import "./Dashboard.css";
+import "./DashboardRoute.css";
 
 // PUT IN HOME ROUTE
-const Dashboard = () => {
+const DashboardRoute = () => {
   const [quote, setQuote] = useState<ZenQuoteResponse[]>([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="Dashboard">
+    <div className="DashboardRoute">
       <p>dashboard</p>
       <p>{quote[0]?.a}</p>
       <p>{quote}</p>
@@ -29,4 +29,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardRoute;

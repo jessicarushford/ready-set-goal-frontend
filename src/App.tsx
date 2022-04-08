@@ -11,6 +11,7 @@ import DetailsRoute from "./components/DetailsRoute";
 import OtherUserRoute from "./components/OtherUserRoute";
 import MeRoute from "./components/MeRoute";
 import AboutUsRoute from "./components/AboutUsRoute";
+import DashboardRoute from "./components/DashboardRoute";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomeRoute />} />
+          <Route path="/dashboard" element={<DashboardRoute />} />
           <Route path="/goals/details/:id" element={<DetailsRoute />} />
           <Route path="/users/:uid" element={<OtherUserRoute />} />
           <Route path="/users/me/:uid" element={<MeRoute />} />
