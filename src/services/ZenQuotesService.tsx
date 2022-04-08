@@ -1,11 +1,9 @@
 import axios from "axios";
-import ZenQuoteResponse from "../model/ZenQuoteResponse";
 
-const baseURL: string = process.env.REACT_APP_QUOTE_URL || "";
-
-export const getDailyQuote = (): Promise<ZenQuoteResponse[]> => {
-  return axios.get(baseURL).then((response) => {
-    console.log(response);
-    return response.data;
-  });
+export const getTodaysQuote = async (): Promise<any> => {
+  return (
+    await axios.get(
+      "http://localhost:5001/ready-set-goal-7b39c/us-central1/api"
+    )
+  ).data;
 };

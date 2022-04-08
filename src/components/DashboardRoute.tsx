@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDailyQuote } from "../services/ZenQuotesService";
+import { getTodaysQuote } from "../services/ZenQuotesService";
 import ZenQuoteResponse from "../model/ZenQuoteResponse";
 import "./DashboardRoute.css";
 
@@ -8,7 +8,7 @@ const DashboardRoute = () => {
   const [quote, setQuote] = useState<ZenQuoteResponse[]>([]);
 
   useEffect(() => {
-    getDailyQuote().then((response) => {
+    getTodaysQuote().then((response) => {
       console.log(response);
       setQuote(response);
     });
