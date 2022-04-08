@@ -9,4 +9,3 @@ export const getDailyQuote = (): Promise<ZenQuoteResponse[]> => {
     return response.data;
   });
 };
-

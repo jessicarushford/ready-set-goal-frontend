@@ -26,4 +26,3 @@ export const deleteGoal = async (id: string): Promise<void> => {
   return (await axios.delete(`${baseURL}/goals/${encodeURIComponent(id)}`))
     .data;
 };
-
