@@ -5,7 +5,7 @@ import "./DashboardRoute.css";
 
 // PUT IN HOME ROUTE
 const DashboardRoute = () => {
-  const [quote, setQuote] = useState<ZenQuoteResponse[]>([]);
+  const [quote, setQuote] = useState<ZenQuoteResponse>();
 
   useEffect(() => {
     getTodaysQuote().then((response) => {
@@ -16,17 +16,12 @@ const DashboardRoute = () => {
 
   return (
     <div className="DashboardRoute">
-      <p>dashboard</p>
-      <p>{quote[0]?.a}</p>
-      <p>{quote}</p>
-      <p>
-        Inspirational quotes provided by
-        <a href="https://zenquotes.io/" target="_blank">
-          ZenQuotes API
-        </a>
-      </p>
+      {quote ? <p>{quote.q}</p> : <p>Loading</p>}
+      {quote ? <p>{quote.a}</p> : <p> Loading</p>}
     </div>
   );
 };
+
+//{quote.a} / {quote ? <p>{quote.q}</p> : <p>Loading</p>} why different?
 
 export default DashboardRoute;
