@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
+import logo from "../assets/logos/ready-set-goal-logo-gray.png";
 
 const Header = () => {
   return (
     <header className="Header">
-      <h1>Ready, Set, Goal</h1>
-      <Link to="/"></Link>
+      <Link to="/dashboard">
+        <h1>
+          <img src={logo} alt="Ready-Set-Goal" />
+        </h1>
+      </Link>
+
       <div>
-        <Link to="">
-          <button>My Goals</button>
-        </Link>
+        <button>My Goals</button>
         <button>Previous Goals</button>
         <button onClick={signInWithGoogle}>Sign In</button>
         <button onClick={signOut}>Sign Out</button>
-        <Link to="">
-          <button>Friends</button>
-        </Link>
+        <button>Friends</button>
       </div>
     </header>
   );

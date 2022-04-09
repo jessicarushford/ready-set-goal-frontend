@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTodaysQuote } from "../services/ZenQuotesService";
-import ZenQuoteResponse from "../model/ZenQuoteResponse";
+import ZenQuoteResponse from "../models/ZenQuoteResponse";
 import "./DashboardRoute.css";
 
 // PUT IN HOME ROUTE

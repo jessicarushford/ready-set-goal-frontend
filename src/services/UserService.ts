@@ -1,5 +1,5 @@
 import axios from "axios";
-import User from "../User";
+import User from "../models/User";
 
 const baseURL: string = process.env.REACT_APP_API_URL || "";
 
