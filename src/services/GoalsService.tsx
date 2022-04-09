@@ -1,5 +1,5 @@
 import axios from "axios";
-import Goal from "../model/Goal";
+import Goal from "../models/Goal";
 
 const baseURL: string = process.env.REACT_APP_API_URL || "";
 
