@@ -1,13 +1,14 @@
 import axios from "axios";
 import Goal from "../models/Goal";
+import QueryStringParams from "../models/QueryStringParams";
 
 const baseURL: string = process.env.REACT_APP_API_URL || "";
 
 //using axios, functions to hit APIs on goalRouter in backend
 
 //get all goals with empty params or get all goals with given uid in Dashboard in HomeRoute
-export const getGoals = async (uid: string): Promise<Goal[]> => {
-  return (await axios.get(`${baseURL}/goals`, { params: { uid } })).data;
+export const getGoals = async (params: QueryStringParams): Promise<Goal[]> => {
+  return (await axios.get(`${baseURL}/goals`, { params })).data;
 };
 
 //get a goal by id in DetailsRoute
