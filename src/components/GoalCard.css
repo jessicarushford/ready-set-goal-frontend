@@ -1,0 +1,18 @@
+.GoalCard {
+  list-style: none;
+  position: relative;
+}
+
+.GoalCard img {
+  width: 150px;
+}
+
+.GoalCard .goal-text {
+  position: absolute;
+  font-size: 10px;
+  width: 150px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  bottom: 8px;
+}
