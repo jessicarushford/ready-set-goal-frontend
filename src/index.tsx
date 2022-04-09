@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthContextProvider from "./context/AuthContextProvider";
+// import "/fonts/BrittanySignature.tff";
+// import "/fonts/LoreleiGothic-PeRx.tff";
 
 ReactDOM.render(
   <React.StrictMode>
