@@ -25,7 +25,6 @@ const DashboardRoute = () => {
   useEffect(() => {
     getGoals({}).then((response) => setGoals(response));
   }, []);
-
   return (
     <div className="DashboardRoute">
       {user ? <h2>welcome, {user.displayName}</h2> : <h2></h2>}

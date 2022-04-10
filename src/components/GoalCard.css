@@ -1,10 +1,16 @@
 .GoalCard {
   list-style: none;
   position: relative;
+  margin-right: 10px;
+}
+
+.GoalCard a {
+  color: #484848;
 }
 
 .GoalCard img {
   width: 150px;
+  box-shadow: 10px 10px 10px -10px rgb(203, 203, 203);
 }
 
 .GoalCard .goal-text {
