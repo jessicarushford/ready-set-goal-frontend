@@ -1,5 +1,4 @@
 import { FormEvent, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Goal from "../models/Goal";
 import "./NewGoalForm.css";
@@ -19,8 +18,6 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
   const month = newDate.getMonth() + 1;
   const date = newDate.getDate();
 
-  const navigate = useNavigate();
-
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
     const newGoal: Goal = {
@@ -34,7 +31,6 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
       completed: false,
     };
     onAddGoal(newGoal);
-    navigate(`/users/me/todays-goal/${encodeURIComponent(user!.uid)}`);
   };
 
   return (

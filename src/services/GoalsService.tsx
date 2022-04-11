@@ -27,3 +27,14 @@ export const deleteGoal = async (id: string): Promise<void> => {
   return (await axios.delete(`${baseURL}/goals/${encodeURIComponent(id)}`))
     .data;
 };
+
+//increment 1 of likes
+export const plusLikes = async (id: string): Promise<Goal> => {
+  return (await axios.put(`${baseURL}/goals/${encodeURIComponent(id)}`)).data;
+};
+
+//decrement 1 of likes
+export const minusLikes = async (id: string): Promise<Goal> => {
+  return (await axios.put(`${baseURL}/goals/update/${encodeURIComponent(id)}`))
+    .data;
+};
