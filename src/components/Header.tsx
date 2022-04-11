@@ -4,10 +4,16 @@ import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { createNewUser } from "../services/UserService";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  // const { uid } = useParams();
+
+  //   const addNewUser = (uid: string): void => {
+  //     createNewUser(uid);
+  //   };
+  // };
+
   return (
     <header className="Header">
       <div className="logo-container">
