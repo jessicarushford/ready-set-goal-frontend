@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
@@ -7,7 +7,7 @@ import AuthContext from "../context/AuthContext";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-
+  // const { uid } = useParams();
   return (
     <header className="Header">
       <div className="logo-container">
@@ -25,32 +25,53 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="/dashboard">DASHBOARD</a>
+              <Link to="/dashboard">DASHBOARD</Link>
             </li>
-            <li>{/* <a href={`/users/me/${user.uid}`}>TODAY'S GOAL</a> */}</li>
+            {user && (
+              <div>
+                <li>
+                  <Link to={`/users/me/${encodeURIComponent(user!.uid)}`}>
+                    TODAY'S GOAL
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}
+                  >
+                    PREVIOUS GOALS
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={`/users/me/summary/${encodeURIComponent(user!.uid)}`}
+                  >
+                    GOAL SUMMARY
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={`/users/me/friends/${encodeURIComponent(user!.uid)}`}
+                  >
+                    FRIENDS
+                  </Link>
+                </li>
+              </div>
+            )}
+
             <li>
-              <a href="">PREVIOUS GOALS</a>
-            </li>
-            <li>
-              <a href="">GOAL SUMMARY</a>
-            </li>
-            <li>
-              <a href="">FRIENDS</a>
-            </li>
-            <li>
-              <a href="/about-us">ABOUT US</a>
+              <Link to="/about-us">ABOUT US</Link>
             </li>
             {user ? (
               <li>
-                <a onClick={signOut} href="#">
+                <Link onClick={signOut} to="/">
                   LOG OUT
-                </a>
+                </Link>
               </li>
             ) : (
               <li>
-                <a onClick={signInWithGoogle} href="#">
+                <Link onClick={signInWithGoogle} to="/">
                   LOGIN
-                </a>
+                </Link>
               </li>
             )}
           </ul>
