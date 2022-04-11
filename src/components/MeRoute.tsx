@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { signInWithGoogle } from "../firebaseConfig";
@@ -13,14 +13,18 @@ import TodaysCard from "./TodaysCard";
 // Make display name toLowerCase?
 
 const MeRoute = () => {
-  const [todaysGoal, setTodaysGoal] = useState<Goal[]>([]);
+  const [todaysGoal, setTodaysGoal] = useState<Goal>();
   const { user } = useContext(AuthContext);
 
   const addTodaysGoal = (newGoal: Goal): void => {
     addGoal(newGoal).then(() => {
-      setTodaysGoal(todaysGoal);
+      setTodaysGoal(newGoal);
     });
   };
+
+  useEffect(() => {
+    addTodaysGoal(todaysGoal!);
+  }, [todaysGoal]);
 
   return (
     <div className="MeRoute">
@@ -30,9 +34,13 @@ const MeRoute = () => {
             <h2>{user!.displayName}'s goals</h2>
             <h3>TODAY'S GOAL</h3>
           </div>
-          <div className="new-goal-form-container">
-            <NewGoalForm onAddGoal={addTodaysGoal} />
-          </div>
+          {todaysGoal ? (
+            <TodaysCard goal={todaysGoal} />
+          ) : (
+            <div className="new-goal-form-container">
+              <NewGoalForm onAddGoal={addTodaysGoal} />
+            </div>
+          )}
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
             <button>PREVIOUS GOALS</button>
           </Link>
@@ -41,7 +49,6 @@ const MeRoute = () => {
       ) : (
         <button onClick={signInWithGoogle}>LOGIN</button>
       )}
-      {/* <TodaysCard /> */}
     </div>
   );
 };

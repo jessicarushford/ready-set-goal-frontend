@@ -28,7 +28,6 @@ function App() {
           <Route path="/goals/details/:id" element={<DetailsRoute />} />
           <Route path="/users/:uid" element={<OtherUserRoute />} />
           <Route path="/users/me/:uid" element={<MeRoute />} />
-          {/* <Route path="/users/me/todays-goal/:uid" element={<TodaysCard />} /> */}
           <Route
             path="/users/me/previous/:uid"
             element={<PreviousGoalsRoute />}
