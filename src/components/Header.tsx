@@ -25,11 +25,9 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="">DASHBOARD</a>
+              <a href="/dashboard">DASHBOARD</a>
             </li>
-            <li>
-              <a href="">TODAY'S GOAL</a>
-            </li>
+            <li>{/* <a href={`/users/me/${user.uid}`}>TODAY'S GOAL</a> */}</li>
             <li>
               <a href="">PREVIOUS GOALS</a>
             </li>
@@ -40,18 +38,18 @@ const Header = () => {
               <a href="">FRIENDS</a>
             </li>
             <li>
-              <a href="">ABOUT US</a>
+              <a href="/about-us">ABOUT US</a>
             </li>
             {user ? (
               <li>
-                <a onClick={signOut} href="">
+                <a onClick={signOut} href="#">
                   LOG OUT
                 </a>
               </li>
             ) : (
               <li>
-                <a onClick={signInWithGoogle} href="">
-                  LOG IN
+                <a onClick={signInWithGoogle} href="#">
+                  LOGIN
                 </a>
               </li>
             )}
