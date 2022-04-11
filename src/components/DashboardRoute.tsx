@@ -30,7 +30,7 @@ const DashboardRoute = () => {
       {user ? <h2>welcome, {user.displayName}</h2> : <h2></h2>}
       <div className="quote">
         {quote ? <p>{quote.q}</p> : <p>Loading</p>}
-        {quote ? <p>{quote.a}</p> : <p> Loading</p>}
+        {quote ? <p>{quote.a}</p> : <p>Loading</p>}
       </div>
       <ul className="goals">
         {goals.map((goal) => (
