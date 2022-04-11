@@ -1,0 +1,11 @@
+.MeRoute {
+  /* font family */
+  text-align: center;
+}
+
+.MeRoute .new-goal-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
