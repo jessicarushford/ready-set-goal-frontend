@@ -5,11 +5,7 @@ import GoalCard from "./GoalCard";
 import { getGoals } from "../services/GoalsService";
 import { useParams } from "react-router-dom";
 import TodaysCard from "./TodaysCard";
-import {
-  addNewFriend,
-  deleteFriend,
-  getUserById,
-} from "../services/UserService";
+import { addNewFriend, deleteFriend } from "../services/UserService";
 import Friend from "../models/Friend";
 import AuthContext from "../context/AuthContext";
 
@@ -22,6 +18,10 @@ const OtherUserRoute = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const uid: string | undefined = useParams().uid;
   const { user } = useContext(AuthContext);
+  const newDate: Date = new Date();
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1;
+  const date = newDate.getDate();
 
   const addFriend = (uid: string): void => {
     addNewFriend(uid).then((response) => {
@@ -37,6 +37,26 @@ const OtherUserRoute = () => {
 
   const isFriend = (uid: string): boolean =>
     friends.some((friend) => friend.uid === uid);
+
+  const achievedGoals = (): void => {
+    goals.map((goal) => {
+      if (goal.completed) {
+        <div>
+          <GoalCard key={goal._id} goal={goal} />;
+        </div>;
+      }
+    });
+  };
+
+  const missedGoals = () => {
+    goals.map((goal) => {
+      if (!goal.completed && goal.date !== `${month}.${date}.${year}`) {
+        <div>
+          <GoalCard key={goal._id} goal={goal} />;
+        </div>;
+      }
+    });
+  };
 
   useEffect(() => {
     getGoals({ uid }).then((response) => {
@@ -66,11 +86,8 @@ const OtherUserRoute = () => {
 
       {/* {goals ? <TodaysCard goal={goals[0]} /> : <p>loading</p>} */}
       <h3>PREVIOUS GOALS</h3>
-      <button>ACHIEVED</button>
-      <button>MISSED</button>
-      {/* {goals.map((goal) => {
-        <GoalCard key={goal._id} goal={goal} />;
-      })} */}
+      <button onClick={achievedGoals}>ACHIEVED</button>
+      <button onClick={missedGoals}>MISSED</button>
     </div>
   );
 };

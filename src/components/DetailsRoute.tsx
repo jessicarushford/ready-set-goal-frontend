@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Goal from "../models/Goal";
-import { addComment, getGoalById, plusLikes } from "../services/GoalsService";
+import { addComment, getGoalById } from "../services/GoalsService";
 import CommentForm from "./CommentForm";
 import "./DetailsRoute.css";
 import GoalCard from "./GoalCard";

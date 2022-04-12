@@ -2,17 +2,22 @@ import { Link, useParams } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
-import { createNewUser } from "../services/UserService";
+import { createNewUser, getUserByUid } from "../services/UserService";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
 
-  //   const addNewUser = (uid: string): void => {
-  //     createNewUser(uid);
-  //   };
-  // };
+  useEffect(() => {
+    if (user) {
+      getUserByUid(user.uid).then((response) => {
+        if (!response) {
+          createNewUser(user.uid).then(() => {});
+        }
+      });
+    }
+  }, [user]);
 
   return (
     <header className="Header">

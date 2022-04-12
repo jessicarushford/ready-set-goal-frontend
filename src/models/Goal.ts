@@ -8,6 +8,6 @@ export default interface Goal {
   category: string;
   date: string;
   comments?: Comment[];
-  likes?: number;
+  likes?: string[];
   completed?: boolean;
 }
