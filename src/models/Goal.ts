@@ -1,3 +1,5 @@
+import Comment from "./Comment";
+
 export default interface Goal {
   _id?: string;
   uid: string;

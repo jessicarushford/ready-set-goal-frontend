@@ -38,3 +38,10 @@ export const minusLikes = async (id: string): Promise<Goal> => {
   return (await axios.put(`${baseURL}/goals/update/${encodeURIComponent(id)}`))
     .data;
 };
+
+//Add new comment
+export const addComment = async (id: string): Promise<Goal> => {
+  return (
+    await axios.put(`${baseURL}/goals/new-comment/${encodeURIComponent(id)}`)
+  ).data;
+};
