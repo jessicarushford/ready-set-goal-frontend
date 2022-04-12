@@ -1,7 +1,9 @@
 .GoalCard {
+  font-size: 10px;
   list-style: none;
   position: relative;
   margin-right: 10px;
+  color: #484848;
 }
 
 .GoalCard a {
@@ -15,8 +17,11 @@
 
 .GoalCard .goal-text {
   position: absolute;
-  font-size: 10px;
   width: 150px;
   box-sizing: border-box;
-  text-align: center;
+  bottom: 60px;
+}
+
+.GoalCard .name {
+  position: absolute;
 }
