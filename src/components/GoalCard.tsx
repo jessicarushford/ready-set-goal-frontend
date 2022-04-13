@@ -47,6 +47,7 @@ const GoalCard = ({ goal }: Props) => {
   const isUidInLikes = (userUid: string): boolean => {
     return likes.some((like) => like === userUid);
   };
+
   //click it how I can get the uid who clicked
 
   //timer -> use library 'date-fns'? maybe make another component

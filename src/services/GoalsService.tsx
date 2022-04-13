@@ -1,4 +1,5 @@
 import axios from "axios";
+import Comment from "../models/Comment";
 import Goal from "../models/Goal";
 import QueryStringParams from "../models/QueryStringParams";
 
@@ -52,7 +53,14 @@ export const takeOffUidFromLikes = async (
 };
 
 //Add new comment
-export const addComment = async (id: string): Promise<Goal> => {
-  return (await axios.put(`${baseURL}/new-comment/${encodeURIComponent(id)}`))
-    .data;
+export const addComment = async (
+  id: string,
+  newComment: Comment
+): Promise<Goal> => {
+  return (
+    await axios.put(
+      `${baseURL}/new-comment/${encodeURIComponent(id)}`,
+      newComment
+    )
+  ).data;
 };
