@@ -27,7 +27,7 @@ const GoalCard = ({ goal }: Props) => {
 
   const addLike = (id: string, userUid: string): void => {
     getUserByUid(user!.uid).then((response) => {
-      if (!response) {
+      if (response) {
         addUidToLikes(id, userUid).then((response) => {
           console.log(response);
           setUpdatedGoal(response);
