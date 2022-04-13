@@ -27,7 +27,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
       category,
       date: `${month}.${date}.${year}`,
       comments: [],
-      likes: 0,
+      likes: [],
       completed: false,
     };
     onAddGoal(newGoal);
