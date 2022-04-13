@@ -2,12 +2,19 @@ import { Link, useParams } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { createNewUser, getUserByUid } from "../services/UserService";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  const [sideBar, setSideBar] = useState(false);
+
+  const toggleSideBarClass = () => {
+    const currentState = sideBar;
+    setSideBar(!currentState);
+  };
+  // if truthy, show setSideBar; if falsy, hide setSideBar?
 
   useEffect(() => {
     if (user) {
@@ -27,12 +34,12 @@ const Header = () => {
             <img src={logo} alt="Ready-Set-Goal" />
           </h1>
         </Link>
-        <a href="side-bar-icon">
-          <i className="fa-solid fa-bars"></i>
-        </a>
       </div>
 
       <div className="side-bar-container">
+        <Link to="#">
+          <i className="fa-solid fa-bars" onClick={toggleSideBarClass}></i>
+        </Link>
         <nav>
           <ul>
             <li>
