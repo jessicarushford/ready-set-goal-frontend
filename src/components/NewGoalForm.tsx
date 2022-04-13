@@ -58,6 +58,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
         cols={30}
         rows={10}
         value={goalText}
+        placeholder="Today my goal is to ..."
         required
         onChange={(e) => setGoalText(e.target.value)}
       ></textarea>

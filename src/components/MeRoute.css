@@ -9,3 +9,17 @@
   align-items: center;
   margin: 20px;
 }
+
+.MeRoute .previous-btn {
+  background-color: #e8a283;
+  border: none;
+  color: #fff;
+  width: 40%;
+  padding: 8px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.MeRoute .previous-btn:hover {
+  box-shadow: 4px 4px 5px #979595;
+}
