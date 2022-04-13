@@ -10,7 +10,6 @@ import NewGoalForm from "./NewGoalForm";
 import TodaysCard from "./TodaysCard";
 
 // New Goal Form + Previous Achieved/Missed Goal Cards + Calendar
-// Make display name toLowerCase?
 
 const MeRoute = () => {
   const [todaysGoal, setTodaysGoal] = useState<Goal>();
@@ -31,7 +30,7 @@ const MeRoute = () => {
       {user ? (
         <>
           <div>
-            <h2>{user!.displayName}'s goals</h2>
+            <h2>{user!.displayName?.toLowerCase()}'s goals</h2>
             <h3>TODAY'S GOAL</h3>
           </div>
           {todaysGoal ? (
@@ -42,7 +41,7 @@ const MeRoute = () => {
             </div>
           )}
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
-            <button>PREVIOUS GOALS</button>
+            <button className="previous-btn">PREVIOUS GOALS</button>
           </Link>
           <Calendar />
         </>
