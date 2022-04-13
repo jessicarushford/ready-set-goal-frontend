@@ -1,29 +1,39 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import Comment from "../models/Comment";
 import "./CommentForm.css";
 
 interface Props {
-  onAddComment: (id: string) => void;
+  onAddComment: (newComment: Comment) => void;
 }
 
 const CommentForm = ({ onAddComment }: Props) => {
-  const [name, setName] = useState("");
+  const { user } = useContext(AuthContext);
   const [commentText, setCommentText] = useState("");
+  const id: string | undefined = useParams().id;
 
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
-    const newComment: id = {
-      name,
+    const newComment: Comment = {
+      name: user?.displayName!,
       commentText,
     };
-    onAddComment(id);
+    onAddComment(newComment);
+    setCommentText("");
   };
 
   return (
     <form className="CommentForm" onSubmit={submitHandler}>
-      <textarea name="comment" id="comment" cols={30} rows={10}>
-        Leave a comment..
-      </textarea>
+      <textarea
+        name="comment"
+        id="comment"
+        cols={30}
+        rows={10}
+        value={commentText}
+        onChange={(e) => setCommentText(e.target.value)}
+        placeholder="Leave a comment.."
+      />
       <button>ADD COMMENT</button>
     </form>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Goal from "../models/Goal";
 import {
@@ -10,11 +10,14 @@ import {
 import CommentForm from "./CommentForm";
 import "./DetailsRoute.css";
 import GoalCard from "./GoalCard";
+import Comment from "../models/Comment";
+import AuthContext from "../context/AuthContext";
 
 // Detail Goal Card + Comment Form
 const DetailsRoute = () => {
+  const { user } = useContext(AuthContext);
   const [goal, setGoal] = useState<Goal | undefined>();
-  const id = useParams().id;
+  const id: string | undefined = useParams().id;
 
   const getAndSetGoal = (id: string): void => {
     getGoalById(id).then((response) => {
@@ -22,8 +25,10 @@ const DetailsRoute = () => {
     });
   };
 
-  const addNewComment = (id: string): void => {
-    addComment(id);
+  const addNewComment = (newComment: Comment): void => {
+    addComment(id!, newComment).then(() => {
+      getAndSetGoal(id!);
+    });
   };
 
   const addLike = (userUid: string): void => {
@@ -61,7 +66,7 @@ const DetailsRoute = () => {
           </li>
         ))}
       </ul>
-      <CommentForm onAddComment={addNewComment} />
+      {user && <CommentForm onAddComment={addNewComment} />}
     </div>
   );
 };
