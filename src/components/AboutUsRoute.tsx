@@ -8,16 +8,40 @@ const AboutUsRoute = () => {
       <h3>jessica rushford</h3>
       <div>
         <img src="" alt="Jessica Rushford Headshot" />
-        <p>jessica's bio ...</p>
+        <p>
+          During the last 10 years in the fitness industry, I have worked on a
+          small core team, led multiple high-volume projects and events with
+          attendances over two hundred people and managed and mentored hundreds
+          of individuals. Throughout my project management experience, I have
+          always been drawn to the tech aspects of my career, including building
+          our company website and app. Therefore, I cannot wait to switch gears
+          into the tech industry and become a front-end developer. I am
+          passionate about designing digital user experiences and excited to
+          apply my creative and technical skills. My goal is not only to become
+          a web developer, but also to find a team that allows me to continue to
+          grow and learn while inspiring others along the way.
+        </p>
       </div>
       <img src="" alt="Paper Note" />
-      <h3>april</h3>
+      <h3>sooyeon (april) hong</h3>
       <div>
         <img src="" alt="April's Headshot" />
-        <p>april's bio ...</p>
+        <p>
+          Highly efficient and creative teamplayer, with 5 years of previous
+          experience in educational services and customer service. Currently
+          completing the JavaScript coding bootcamp with Grand Circus in order
+          to transition to the tech industry. When I studied fashion at the
+          university, I had a chance to learn photoshop and was also interested
+          in web design so I studied html and css which I really enjoyed. While
+          changing careers is scary, I am embracing the unknown and turning that
+          fear into excitement for what's next in my goals to become a full
+          stack developer. I am particularly excited to leverage strengths in
+          Javascript, Typescript, and React in order to create clean, user
+          friendly, and accessible websites.
+        </p>
       </div>
       <img src="" alt="Paper Note" />
-      <h3>isaiah</h3>
+      <h3>isaiah sweezie</h3>
       <div>
         <img src="" alt="Isaiah's Headshot" />
         <p>isaiah's bio ...</p>
