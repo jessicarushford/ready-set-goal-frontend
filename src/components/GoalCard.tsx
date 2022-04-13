@@ -39,6 +39,7 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
     return goal.likes!.some((like) => like === user.uid);
   };
 
+
   //timer -> use library 'date-fns'? maybe make another component
 
   return (
