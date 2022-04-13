@@ -1,9 +1,7 @@
 import "./TodaysCard.css";
 import note from "../assets/note.png";
 import Goal from "../models/Goal";
-import { useContext, useEffect, useState } from "react";
-import Calendar from "./Calendar";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 interface Props {
@@ -30,10 +28,6 @@ const TodaysCard = ({ goal }: Props) => {
           <p>{goal.name}</p>
         </div>
       </div>
-      <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
-        <button>PREVIOUS GOALS</button>
-      </Link>
-      <Calendar />
     </div>
   );
 };

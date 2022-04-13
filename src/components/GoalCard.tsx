@@ -14,41 +14,31 @@ import { getUserByUid } from "../services/UserService";
 
 interface Props {
   goal: Goal;
+  onAddLike?: (userUid: string) => void;
+  onUnLike?: (userUid: string) => void;
 }
 //date, goalText, name will be on a card.
-const GoalCard = ({ goal }: Props) => {
+const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const { user } = useContext(AuthContext);
-  const [updatedGoal, setUpdatedGoal] = useState<Goal>();
-  const [countLikes, setCountLikes] = useState(goal.likes?.length);
-  const [likes, setLikes] = useState<[]>([]);
   const location = useLocation();
   const path = location.pathname;
-  // const userUid: string | undefined = useParams().uid;
 
-  const addLike = (id: string, userUid: string): void => {
-    getUserByUid(user!.uid).then((response) => {
-      if (response) {
-        addUidToLikes(id, userUid).then((response) => {
-          console.log(response);
-          setUpdatedGoal(response);
-          setCountLikes(goal.likes?.length);
-        });
-      }
-    });
+  // const addLike = (id: string, userUid: string): void => {
+  //   addUidToLikes(id, userUid).then(() => {
+  //     setCountLikes(goal.likes?.length);
+  //   });
+  // };
+
+  // const unLike = (id: string, userUid: string): void => {
+  //   takeOffUidFromLikes(id, userUid).then(() =>
+  //     setCountLikes(goal.likes?.length)
+  //   );
+  // };
+
+  const isUidInLikes = (goal: Goal, user: any): boolean => {
+    return goal.likes!.some((like) => like === user.uid);
   };
 
-  const unLike = (id: string, userUid: string): void => {
-    takeOffUidFromLikes(id, userUid).then((response) =>
-      setUpdatedGoal(response)
-    );
-    setCountLikes(goal.likes?.length);
-  };
-
-  const isUidInLikes = (userUid: string): boolean => {
-    return likes.some((like) => like === userUid);
-  };
-
-  //click it how I can get the uid who clicked
 
   //timer -> use library 'date-fns'? maybe make another component
 
@@ -79,19 +69,19 @@ const GoalCard = ({ goal }: Props) => {
             <Link to={`/users/${goal.uid!}`}>
               <p>{goal.name}</p>
             </Link>
-            {user && isUidInLikes(user.uid) ? (
+            {user && isUidInLikes(goal, user) ? (
               <i
                 className="fa-solid fa-thumbs-up"
-                onClick={() => unLike(goal._id!, user.uid)}
+                onClick={() => onUnLike!(user.uid)}
               ></i>
             ) : (
               <i
                 className="fa-regular fa-thumbs-up"
-                onClick={() => addLike(goal._id!, user.uid)}
+                onClick={() => onAddLike!(user.uid)}
               ></i>
             )}
 
-            {goal ? <p>Likes: {countLikes! + 1}</p> : <p>Loading</p>}
+            {goal ? <p>Likes: {goal.likes!.length}</p> : <p>Loading</p>}
           </div>
         ) : (
           <p>{goal.name}</p>
