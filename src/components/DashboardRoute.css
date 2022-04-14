@@ -3,3 +3,39 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.DashboardRoute h2 {
+  text-align: center;
+}
+
+.DashboardRoute .quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.DashboardRoute .quote .main-note {
+  width: 300px;
+}
+
+.DashboardRoute .quote-p .author-p {
+  position: absolute;
+}
+
+.DashboardRoute .quote .quote-p {
+  top: 20px;
+  transform: translateY(-250px);
+  width: 50%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.DashboardRoute .quote .author-p {
+  top: 20px;
+  transform: translateY(-270px);
+  width: 50%;
+  text-align: center;
+  font-size: 16px;
+}

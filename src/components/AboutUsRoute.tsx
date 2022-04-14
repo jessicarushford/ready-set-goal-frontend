@@ -1,10 +1,10 @@
 import "./AboutUsRoute.css";
-
+import mainNote from "../assets/images/main-note.png";
 const AboutUsRoute = () => {
   return (
     <div className="AboutUsRoute">
       <h2>about us</h2>
-      <img src="" alt="Paper Note" />
+      <img src={mainNote} alt="Paper Note" className="main-note" />
       <h3>jessica rushford</h3>
       <div>
         <img src="" alt="Jessica Rushford Headshot" />
@@ -22,7 +22,7 @@ const AboutUsRoute = () => {
           grow and learn while inspiring others along the way.
         </p>
       </div>
-      <img src="" alt="Paper Note" />
+      <img src={mainNote} alt="Paper Note" className="main-note" />
       <h3>sooyeon (april) hong</h3>
       <div>
         <img src="" alt="April's Headshot" />
@@ -40,7 +40,7 @@ const AboutUsRoute = () => {
           friendly, and accessible websites.
         </p>
       </div>
-      <img src="" alt="Paper Note" />
+      <img src={mainNote} alt="Paper Note" className="main-note" />
       <h3>isaiah sweezie</h3>
       <div>
         <img src="" alt="Isaiah's Headshot" />
