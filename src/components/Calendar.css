@@ -1,0 +1,43 @@
+.Calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+}
+.Calendar a {
+  text-decoration: none;
+}
+
+.Calendar .goal-date {
+  color: #484848;
+  list-style: none;
+  border: #484848 1px solid;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Calendar p {
+  margin: 0;
+}
+
+.Calendar .hide {
+  display: none;
+}
+/* 
+.Calendat .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  } */
