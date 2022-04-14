@@ -21,9 +21,9 @@ const MeRoute = () => {
     });
   };
 
-  useEffect(() => {
-    addTodaysGoal(todaysGoal!);
-  }, [todaysGoal]);
+  // useEffect(() => {
+  //   addTodaysGoal(todaysGoal!).then((response) => setTodaysGoal(response));
+  // }, [todaysGoal]);
 
   return (
     <div className="MeRoute">
