@@ -15,7 +15,6 @@ import DashboardRoute from "./components/DashboardRoute";
 import PreviousGoalsRoute from "./components/PreviousGoalsRoute";
 import SummaryRoute from "./components/SummaryRoute";
 import FriendRoute from "./components/FriendRoute";
-import TodaysCard from "./components/TodaysCard";
 
 function App() {
   return (
