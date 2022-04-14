@@ -1,0 +1,54 @@
+.TodaysCard {
+  font-size: 20px;
+  list-style: none;
+  margin-right: 10px;
+  color: #484848;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0px 10px 30px 10px;
+}
+
+.TodaysCard a {
+  color: #484848;
+
+  text-align: center;
+  text-decoration: none;
+}
+
+.TodaysCard img {
+  width: 250px;
+  box-shadow: 10px 10px 10px -10px rgb(203, 203, 203);
+}
+
+.TodaysCard .goal-text {
+  position: absolute;
+  width: 250px;
+  box-sizing: border-box;
+  padding: 10px;
+  top: 40px;
+  position: absolute;
+  text-align: center;
+}
+
+.TodaysCard .detail-goal {
+  position: relative;
+}
+
+.TodaysCard .name {
+  font-size: 20px;
+  color: #658b92;
+}
+
+.TodaysCard .fa-thumbs-up {
+  position: absolute;
+  bottom: -25px;
+  left: 12px;
+  font-size: 18px;
+}
+
+.TodaysCard .count-likes {
+  position: absolute;
+  bottom: -48px;
+  left: 40px;
+}
