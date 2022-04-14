@@ -4,11 +4,6 @@ import Goal from "../models/Goal";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-import {
-  getGoalById,
-  goalIsCompleted,
-  goalIsMissed,
-} from "../services/GoalsService";
 import QueryStringParams from "../models/QueryStringParams";
 
 interface Props {
@@ -19,9 +14,6 @@ interface Props {
 
 const TodaysCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const { user } = useContext(AuthContext);
-  const location = useLocation();
-  const path = location.pathname;
-  const params: QueryStringParams = {};
 
   // const getAndSetGoals = (id: string): void => {
   //   getGoals(uid).then((response)=>{
@@ -44,9 +36,9 @@ const TodaysCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const isUidInLikes = (goal: Goal, user: any): boolean => {
     return goal.likes!.some((like) => like === user.uid);
   };
-  const isComplete = () => {
-    // create fxn that changes boolean from false to true when check icon is clicked
-  };
+  // const isComplete = () => {
+  //   // create fxn that changes boolean from false to true when check icon is clicked
+  // };
 
   return (
     <div className="TodaysCard">
@@ -57,7 +49,22 @@ const TodaysCard = ({ goal, onAddLike, onUnLike }: Props) => {
           <p>{goal.date}</p>
           <p>{goal.goalText}</p>
           {/* <p>time left: {}</p> */}
-          <i className="fa-solid fa-thumbs-up"></i>
+          {user && isUidInLikes(goal, user) ? (
+            <i
+              className="fa-solid fa-thumbs-up"
+              onClick={() => onUnLike!(user.uid)}
+            ></i>
+          ) : (
+            <i
+              className="fa-regular fa-thumbs-up"
+              onClick={() => onAddLike!(user?.uid!)}
+            ></i>
+          )}
+          {goal ? (
+            <p className="count-likes">Likes: {goal.likes!.length}</p>
+          ) : (
+            <p>Loading</p>
+          )}
           <p>{goal.name}</p>
         </div>
       </div>
