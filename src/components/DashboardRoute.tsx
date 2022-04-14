@@ -6,6 +6,7 @@ import AuthContext from "../context/AuthContext";
 import Goal from "../models/Goal";
 import { getGoals } from "../services/GoalsService";
 import GoalCard from "./GoalCard";
+import mainNote from "../assets/images/main-note.png";
 
 // PUT IN HOME ROUTE
 const DashboardRoute = () => {
@@ -25,12 +26,14 @@ const DashboardRoute = () => {
   useEffect(() => {
     getGoals({}).then((response) => setGoals(response));
   }, []);
+
   return (
     <div className="DashboardRoute">
-      {user ? <h2>welcome, {user.displayName}</h2> : <h2></h2>}
+      {user ? <h2>welcome, {user.displayName?.toLowerCase()}</h2> : <h2></h2>}
       <div className="quote">
-        {quote ? <p>{quote.q}</p> : <p>Loading</p>}
-        {quote ? <p>{quote.a}</p> : <p>Loading</p>}
+        <img src={mainNote} alt="Main Note" className="main-note" />
+        {quote ? <p className="quote-p">"{quote.q}"</p> : <p>Loading</p>}
+        {quote ? <p className="author-p">-{quote.a}</p> : <p>Loading</p>}
       </div>
       <ul className="goals">
         {goals.map((goal) => (

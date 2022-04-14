@@ -1,0 +1,8 @@
+.AboutUsRoute {
+  display: flex;
+  flex-direction: column;
+}
+
+.AboutUsRoute .main-note {
+  width: 400px;
+}

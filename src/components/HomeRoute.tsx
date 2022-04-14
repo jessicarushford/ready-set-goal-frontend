@@ -16,12 +16,21 @@ const HomeRoute = () => {
   }, [user]);
   return (
     <div className="HomeRoute">
-      <button onClick={signInWithGoogle}>LOGIN</button>
+      <img src="" alt="Logo" />
+      <p>Keep your motivation with simple, daily goals.</p>
+      <p>We are always rooting for you.</p>
+      <button className="login-btn" onClick={signInWithGoogle}>
+        LOGIN
+      </button>
       <p>
         Continue as{" "}
-        <Link to={`/dashboard`} className="guest btn">
+        <Link to={`/dashboard`} className="guest-btn">
           Guest
         </Link>
+      </p>
+      <p className="footer-p">
+        By continuing, I accept the ready, set, goal Terms and Conditions of Use
+        and Privacy Policy. Established © 2022
       </p>
     </div>
   );
