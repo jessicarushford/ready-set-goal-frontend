@@ -1,0 +1,16 @@
+.FriendRoute ul {
+  padding: 10px;
+}
+
+.FriendRoute li {
+  list-style: none;
+  text-align: left;
+  margin: 15px 25px;
+  padding: 10px;
+  font-size: 24px;
+  background-color: #658b92;
+  box-shadow: 4px 4px 5px #979595;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
