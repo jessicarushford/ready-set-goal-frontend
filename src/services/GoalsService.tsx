@@ -64,3 +64,12 @@ export const addComment = async (
     )
   ).data;
 };
+
+export const goalIsCompleted = async (id: string): Promise<Goal> => {
+  return (await axios.put(`${baseURL}/completed/${encodeURIComponent(id)}`))
+    .data;
+};
+
+export const goalIsMissed = async (id: string): Promise<Goal> => {
+  return (await axios.put(`${baseURL}/missed/${encodeURIComponent(id)}`)).data;
+};

@@ -1,5 +1,6 @@
 import "./AboutUsRoute.css";
 import mainNote from "../assets/images/main-note.png";
+
 const AboutUsRoute = () => {
   return (
     <div className="AboutUsRoute">

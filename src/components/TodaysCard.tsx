@@ -1,16 +1,49 @@
 import "./TodaysCard.css";
 import note from "../assets/note.png";
 import Goal from "../models/Goal";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
+import { useLocation } from "react-router-dom";
+import {
+  getGoalById,
+  goalIsCompleted,
+  goalIsMissed,
+} from "../services/GoalsService";
+import QueryStringParams from "../models/QueryStringParams";
 
 interface Props {
   goal: Goal;
+  onAddLike?: (userUid: string) => void;
+  onUnLike?: (userUid: string) => void;
 }
 
-const TodaysCard = ({ goal }: Props) => {
+const TodaysCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+  const path = location.pathname;
+  const params: QueryStringParams = {};
 
+  // const getAndSetGoals = (id: string): void => {
+  //   getGoals(uid).then((response)=>{
+  //     setTodaysGoal(response)
+  //   })
+  // }
+
+  //   const goalComplete = (id: string): void => {
+  //     goalIsCompleted(id).then((response) => {
+  //       setTodaysGoal(response)
+  //     });
+  //   };
+
+  //   const goalMissed = (id: string): void => {
+  // goalIsMissed(id).then((response)=>{
+  //   setTodaysGoal(response)
+  // })
+  //   }
+
+  const isUidInLikes = (goal: Goal, user: any): boolean => {
+    return goal.likes!.some((like) => like === user.uid);
+  };
   const isComplete = () => {
     // create fxn that changes boolean from false to true when check icon is clicked
   };
