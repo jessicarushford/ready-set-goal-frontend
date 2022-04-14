@@ -1,27 +1,55 @@
 .GoalCard {
-  font-size: 10px;
+  font-size: 20px;
   list-style: none;
-  position: relative;
   margin-right: 10px;
   color: #484848;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0px 10px 30px 10px;
 }
 
 .GoalCard a {
   color: #484848;
+
+  text-align: center;
+  text-decoration: none;
 }
 
 .GoalCard img {
-  width: 150px;
+  width: 250px;
   box-shadow: 10px 10px 10px -10px rgb(203, 203, 203);
 }
 
 .GoalCard .goal-text {
   position: absolute;
-  width: 150px;
+  width: 250px;
   box-sizing: border-box;
-  bottom: 60px;
+  padding: 10px;
+  top: 40px;
+  position: absolute;
+  text-align: center;
+}
+
+.GoalCard .detail-goal {
+  position: relative;
 }
 
 .GoalCard .name {
+  font-size: 20px;
+  color: #658b92;
+}
+
+.GoalCard .fa-solid,
+.GoalCard .fa-regular {
   position: absolute;
+  bottom: -25px;
+  left: 12px;
+  font-size: 18px;
+}
+
+.GoalCard .count-likes {
+  position: absolute;
+  bottom: -48px;
+  left: 40px;
 }

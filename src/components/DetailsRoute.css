@@ -1,0 +1,54 @@
+.DetailsRoute .comment-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.DetailsRoute .comment {
+  display: flex;
+  width: 50%;
+  background-color: rgba(181, 149, 126, 0.67);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.DetailsRoute .comment-text {
+  padding-left: 10px;
+}
+
+.DetailsRoute form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: absolute;
+  margin-top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.DetailsRoute textarea {
+  background-color: rgba(181, 149, 126, 0.67);
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.DetailsRoute textarea::placeholder {
+  color: #484848;
+}
+
+.DetailsRoute button {
+  margin-bottom: 50px;
+  margin-top: 10px;
+  background-color: #658b92;
+  color: white;
+  height: 50px;
+  font-size: 20px;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

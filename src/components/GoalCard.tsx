@@ -7,11 +7,6 @@ import { useContext, useState } from "react";
 import { addUidToLikes, takeOffUidFromLikes } from "../services/GoalsService";
 import { getUserByUid } from "../services/UserService";
 
-//TODO
-//to add like button in the goal card - //decrement likes
-//to add timer for today (if the date === today's date)
-//user.displaName should be clickable (if user is truthy)
-
 interface Props {
   goal: Goal;
   onAddLike?: (userUid: string) => void;
@@ -23,22 +18,9 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const location = useLocation();
   const path = location.pathname;
 
-  // const addLike = (id: string, userUid: string): void => {
-  //   addUidToLikes(id, userUid).then(() => {
-  //     setCountLikes(goal.likes?.length);
-  //   });
-  // };
-
-  // const unLike = (id: string, userUid: string): void => {
-  //   takeOffUidFromLikes(id, userUid).then(() =>
-  //     setCountLikes(goal.likes?.length)
-  //   );
-  // };
-
   const isUidInLikes = (goal: Goal, user: any): boolean => {
     return goal.likes!.some((like) => like === user.uid);
   };
-
 
   //timer -> use library 'date-fns'? maybe make another component
 
@@ -52,40 +34,49 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
               <div className="goal-text">
                 <p>{goal.date}</p>
                 <p>{goal.goalText}</p>
+                <p className="name">{goal.name}</p>
               </div>
             </Link>
+          ) : user && path === `/goals/details/${goal._id}` ? (
+            <div className="detail-goal">
+              <img src={note} alt="note for goal" />
+              <div className="goal-text">
+                <p>{goal.date}</p>
+                <p>{goal.goalText}</p>
+                <Link to={`/users/${goal.uid!}`}>
+                  <p className="name">{goal.name}</p>
+                </Link>
+              </div>
+
+              {user && isUidInLikes(goal, user) ? (
+                <i
+                  className="fa-solid fa-thumbs-up"
+                  onClick={() => onUnLike!(user.uid)}
+                ></i>
+              ) : (
+                <i
+                  className="fa-regular fa-thumbs-up"
+                  onClick={() => onAddLike!(user.uid)}
+                ></i>
+              )}
+
+              {goal ? (
+                <p className="count-likes">Likes: {goal.likes!.length}</p>
+              ) : (
+                <p>Loading</p>
+              )}
+            </div>
           ) : (
             <>
               <img src={note} alt="note for goal" />
               <div className="goal-text">
                 <p>{goal.date}</p>
                 <p>{goal.goalText}</p>
+                <p className="name">{goal.name}</p>
               </div>
             </>
           )}
         </div>
-        {user && path === `/goals/details/${goal._id}` ? (
-          <div className="name-likes">
-            <Link to={`/users/${goal.uid!}`}>
-              <p>{goal.name}</p>
-            </Link>
-            {user && isUidInLikes(goal, user) ? (
-              <i
-                className="fa-solid fa-thumbs-up"
-                onClick={() => onUnLike!(user.uid)}
-              ></i>
-            ) : (
-              <i
-                className="fa-regular fa-thumbs-up"
-                onClick={() => onAddLike!(user.uid)}
-              ></i>
-            )}
-
-            {goal ? <p>Likes: {goal.likes!.length}</p> : <p>Loading</p>}
-          </div>
-        ) : (
-          <p>{goal.name}</p>
-        )}
       </div>
     </li>
   );

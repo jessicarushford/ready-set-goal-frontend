@@ -13,7 +13,7 @@ const Header = () => {
     if (user) {
       getUserByUid(user.uid).then((response) => {
         if (!response) {
-          createNewUser(user.uid).then(() => {});
+          createNewUser(user.uid, user.displayName!).then(() => {});
         }
       });
     }

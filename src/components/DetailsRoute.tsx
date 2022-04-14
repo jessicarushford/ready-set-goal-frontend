@@ -58,11 +58,11 @@ const DetailsRoute = () => {
       ) : (
         <p>Loading</p>
       )}
-      <ul>
+      <ul className="comment-list">
         {goal?.comments?.map((comment) => (
-          <li>
-            <p>{comment.name}</p>
-            <p>{comment.commentText}</p>
+          <li className="comment">
+            <p className="comment-name">{comment.name}:</p>
+            <p className="comment-text">{comment.commentText}</p>
           </li>
         ))}
       </ul>
