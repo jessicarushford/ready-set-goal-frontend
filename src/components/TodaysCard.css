@@ -11,7 +11,6 @@
 
 .TodaysCard a {
   color: #484848;
-
   text-align: center;
   text-decoration: none;
 }
@@ -21,12 +20,19 @@
   box-shadow: 10px 10px 10px -10px rgb(203, 203, 203);
 }
 
+.TodaysCard .fa-circle-check {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 32px;
+}
+
 .TodaysCard .goal-text {
   position: absolute;
   width: 250px;
   box-sizing: border-box;
   padding: 10px;
-  top: 40px;
+  top: 30px;
   position: absolute;
   text-align: center;
 }
@@ -42,13 +48,18 @@
 
 .TodaysCard .fa-thumbs-up {
   position: absolute;
-  bottom: -25px;
+  bottom: -15px;
   left: 12px;
-  font-size: 18px;
+  font-size: 28px;
+}
+
+.TodaysCard .fa-solid .fa-thumbs-up {
+  color: #e8a283;
 }
 
 .TodaysCard .count-likes {
   position: absolute;
-  bottom: -48px;
-  left: 40px;
+  bottom: -30px;
+  left: 45px;
+  font-size: 16px;
 }
