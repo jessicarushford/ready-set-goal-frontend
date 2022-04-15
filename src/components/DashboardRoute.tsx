@@ -54,24 +54,21 @@ const DashboardRoute = () => {
           <GoalCard key={goal._id} goal={goal} />
         ))}
       </ul>
-      {/* {user && isLastLoginToday(user.uid) ? (
-        <div>
-          <p>
-            You missed your goal yesterday! Do you want to re-set it to your
-            Today's Goal?
-          </p>
-          <Link to={`/users/me/${user!.uid}`}>
-            <p>YES PLEASE</p>
-          </Link>
-        </div>
-      ) : (
-        <div>
-          <p>Congrats! You completed your goal yesterday!</p>
-          <Link to={`/users/me/${user!.uid}`}>
-            <p>LET'S GO!</p>
-          </Link>
-        </div>
-      )} */}
+      <div>
+        <p>
+          You missed your goal yesterday! Do you want to re-set it to your
+          Today's Goal?
+        </p>
+        {/* <Link to={`/users/me/${user!.uid}`}>
+          <p>YES PLEASE</p>
+        </Link>
+      </div>
+      <div>
+        <p>Congrats! You completed your goal yesterday!</p>
+        <Link to={`/users/me/${user!.uid}`}>
+          <p>LET'S GO!</p>
+        </Link> */}
+      </div>
     </div>
   );
 };
