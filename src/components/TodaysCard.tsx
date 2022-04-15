@@ -4,48 +4,52 @@ import Goal from "../models/Goal";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-import QueryStringParams from "../models/QueryStringParams";
 
 interface Props {
   goal: Goal;
   onAddLike?: (userUid: string) => void;
   onUnLike?: (userUid: string) => void;
+  onGoalCompleted?: (id: string) => void;
+  onGoalMissed?: (id: string) => void;
 }
 
-const TodaysCard = ({ goal, onAddLike, onUnLike }: Props) => {
+const TodaysCard = ({
+  goal,
+  onAddLike,
+  onUnLike,
+  onGoalCompleted,
+  onGoalMissed,
+}: Props) => {
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+  const path = location.pathname;
 
-  // const getAndSetGoals = (id: string): void => {
-  //   getGoals(uid).then((response)=>{
-  //     setTodaysGoal(response)
-  //   })
-  // }
-
-  //   const goalComplete = (id: string): void => {
-  //     goalIsCompleted(id).then((response) => {
-  //       setTodaysGoal(response)
-  //     });
-  //   };
-
-  //   const goalMissed = (id: string): void => {
-  // goalIsMissed(id).then((response)=>{
-  //   setTodaysGoal(response)
-  // })
-  //   }
-
-  const isUidInLikes = (goal: Goal, user: any): boolean => {
-    return goal.likes!.some((like) => like === user.uid);
-  };
-  // const isComplete = () => {
-  //   // create fxn that changes boolean from false to true when check icon is clicked
-  // };
+  //checking if there is the uid in current user's like list
+  const isUidInLikes = (goal: Goal, user: any): boolean =>
+    goal.likes!.some((like) => like === user.uid);
+  //we don't need isComplete function.
 
   return (
     <div className="TodaysCard">
       <div className="todays-card-container">
         <img src={note} alt="note-for-goal" />
         <div className="goal-text">
-          <i className="fa-solid fa-circle-check"></i>
+          {user && path === `/users/me/${user!.uid}` ? (
+            goal.completed ? (
+              <i
+                className="fa-solid fa-circle-check"
+                onClick={() => onGoalMissed!(goal._id!)}
+              ></i>
+            ) : (
+              <i
+                className="fa-regular fa-circle-check"
+                onClick={() => onGoalCompleted!(goal._id!)}
+              ></i>
+            )
+          ) : (
+            <></>
+          )}
+
           <p>{goal.date}</p>
           <p>{goal.goalText}</p>
           {/* <p>time left: {}</p> */}

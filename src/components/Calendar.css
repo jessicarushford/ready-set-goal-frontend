@@ -4,23 +4,11 @@
   justify-content: center;
   margin: 0;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 .Calendar a {
   text-decoration: none;
-}
-
-.Calendar .goal-date {
-  color: #484848;
-  list-style: none;
-  border: #484848 1px solid;
-  height: 50px;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .Calendar p {
@@ -30,14 +18,61 @@
 .Calendar .hide {
   display: none;
 }
-/* 
-.Calendat .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-  } */
+
+.Calendar .tooltip {
+  color: #e8a283;
+  font-size: 30px;
+  list-style: none;
+  border: #484848 1px solid;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.Calendar .tooltip:before,
+.Calendar .tooltip:after {
+  position: absolute;
+  content: "";
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 5;
+}
+
+.Calendar .tooltip:before {
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #658b92 transparent;
+  top: 38px;
+  transform: translateY(20px);
+}
+
+.Calendar .tooltip:after {
+  content: attr(data-tooltip);
+  background: #658b92;
+  color: white;
+  width: 80px;
+  height: 15px;
+  font-size: 15px;
+  font-weight: 400;
+  top: 100%;
+  left: 0px;
+  padding: 10px;
+  border-radius: 5px;
+  /* letter-spacing: 1px; */
+  transform: translateY(20px);
+}
+
+.Calendar .tooltip:hover:before,
+.Calendar .tooltip:hover:after {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.Calendar i {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}

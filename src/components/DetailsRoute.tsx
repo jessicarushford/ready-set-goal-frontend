@@ -25,11 +25,14 @@ const DetailsRoute = () => {
     });
   };
 
+  //when the comment form is submitted, add new comment in the goal's comment list
   const addNewComment = (newComment: Comment): void => {
     addComment(id!, newComment).then(() => {
       getAndSetGoal(id!);
     });
   };
+
+  //can delete a comment only if the writer of the comment is the current user(me)
 
   const addLike = (userUid: string): void => {
     addUidToLikes(id!, userUid).then(() => {

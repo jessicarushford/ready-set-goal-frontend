@@ -3,9 +3,7 @@ import Goal from "../models/Goal";
 import note from "../assets/note.png";
 import "./GoalCard.css";
 import AuthContext from "../context/AuthContext";
-import { useContext, useState } from "react";
-import { addUidToLikes, takeOffUidFromLikes } from "../services/GoalsService";
-import { getUserByUid } from "../services/UserService";
+import { useContext } from "react";
 
 interface Props {
   goal: Goal;

@@ -8,6 +8,8 @@ import {
   addGoal,
   addUidToLikes,
   getGoals,
+  goalIsCompleted,
+  goalIsMissed,
   takeOffUidFromLikes,
 } from "../services/GoalsService";
 import Calendar from "./Calendar";
@@ -15,8 +17,7 @@ import "./MeRoute.css";
 import NewGoalForm from "./NewGoalForm";
 import TodaysCard from "./TodaysCard";
 
-// New Goal Form + Previous Achieved/Missed Goal Cards + Calendar
-
+// New Goal Form + Today's coard + Previous Achieved/Missed Goal Cards + Calendar
 const MeRoute = () => {
   const [goals, setGoals] = useState<Goal[]>([]);
   const [todaysGoal, setTodaysGoal] = useState<Goal | undefined>();
@@ -31,24 +32,7 @@ const MeRoute = () => {
     uid,
   };
 
-  // const getAndSetGoals = (id: string): void => {
-  //   getGoals(uid).then((response)=>{
-  //     setTodaysGoal(response)
-  //   })
-  // }
-
-  //   const goalComplete = (id: string): void => {
-  //     goalIsCompleted(id).then((response) => {
-  //       setTodaysGoal(response)
-  //     });
-  //   };
-
-  //   const goalMissed = (id: string): void => {
-  // goalIsMissed(id).then((response)=>{
-  //   setTodaysGoal(response)
-  // })
-  //   }
-
+  //get all goals of a user with a given uid and set goals and set today's goal where todays's date and goal's date are matched
   const getAndSetTodaysGoal = (params: QueryStringParams) => {
     getGoals(params).then((response) => {
       setGoals(response);
@@ -69,9 +53,24 @@ const MeRoute = () => {
     );
   };
 
+  //when form is submitted add newGol as today's goal
   const addTodaysGoal = (newGoal: Goal): void => {
     addGoal(newGoal).then(() => {
       setTodaysGoal(newGoal);
+    });
+  };
+
+  //by calling this fxn, today's goal's complete status will be true
+  const goalCompleted = (id: string): void => {
+    goalIsCompleted(id).then((response) => {
+      getAndSetTodaysGoal(response);
+    });
+  };
+
+  //by calling this fxn, today's goal's complete status will be false
+  const goalMissed = (id: string): void => {
+    goalIsMissed(id).then((response) => {
+      getAndSetTodaysGoal(response);
     });
   };
 
@@ -92,6 +91,8 @@ const MeRoute = () => {
               goal={todaysGoal}
               onAddLike={addLike}
               onUnLike={unLike}
+              onGoalCompleted={goalCompleted}
+              onGoalMissed={goalMissed}
             />
           ) : (
             <div className="new-goal-form-container">
