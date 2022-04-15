@@ -13,4 +13,16 @@
   color: #fff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.FriendRoute a {
+  text-decoration: none;
+  color: white;
+}
+
+.FriendRoute a:hover,
+.FriendRoute i:hover {
+  text-shadow: 2px 2px 3px #212020;
 }

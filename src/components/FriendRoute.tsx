@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Friend from "../models/Friend";
 import { deleteFriend, getUserByUid } from "../services/UserService";
@@ -33,7 +34,9 @@ const FriendRoute = () => {
       <ul>
         {friends.map((friend) => (
           <li>
-            {friend.name}
+            <Link to={`/users/${friend.uid}`}>
+              <p>{friend.name}</p>
+            </Link>
             <i
               className="fa-solid fa-user"
               onClick={() => {

@@ -52,6 +52,13 @@ const Calendar = () => {
 
   return (
     <div className="Calendar">
+      {/* <div className="calendar-header">
+        <i className="fa-solid fa-angles-left" onClick={()=>{}}></i>
+        <p>
+          {monthName} {year}
+        </p>
+        <i className="fa-solid fa-angles-right"></i>
+      </div> */}
       <p>
         {monthName} {year}
       </p>
@@ -61,12 +68,16 @@ const Calendar = () => {
             (goal) =>
               goal !== todaysGoal && (
                 <Link to={`/goals/details/${goal._id}`}>
-                  <li className="goal-date">
-                    <p className="hide">{goal.date}</p>
+                  <li className="tooltip" data-tooltip={goal.date}>
+                    {/* <p className="hide">{goal.date}</p> */}
                     {goal.completed ? (
-                      <i className="fa-solid fa-star"></i>
+                      <>
+                        <i className="fa-solid fa-star"></i>
+                      </>
                     ) : (
-                      <i className="fa-solid fa-x"></i>
+                      <>
+                        <i className="fa-solid fa-x"></i>
+                      </>
                     )}
                   </li>
                 </Link>
