@@ -55,8 +55,8 @@ const MeRoute = () => {
 
   //when form is submitted add newGol as today's goal
   const addTodaysGoal = (newGoal: Goal): void => {
-    addGoal(newGoal).then(() => {
-      setTodaysGoal(newGoal);
+    addGoal(newGoal).then((response) => {
+      setTodaysGoal(response);
     });
   };
 
@@ -88,7 +88,7 @@ const MeRoute = () => {
           </div>
           {todaysGoal ? (
             <TodaysCard
-              goal={todaysGoal}
+              todaysGoal={todaysGoal}
               onAddLike={addLike}
               onUnLike={unLike}
               onGoalCompleted={goalCompleted}
@@ -102,7 +102,7 @@ const MeRoute = () => {
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
             <button className="previous-btn">PREVIOUS GOALS</button>
           </Link>
-          <Calendar />
+          <Calendar todaysGoal={todaysGoal} />
         </>
       ) : (
         <button onClick={signInWithGoogle}>LOGIN</button>

@@ -41,3 +41,7 @@ export const deleteFriend = async (
     )
   ).data;
 };
+
+export const addLastLogin = async (uid: string): Promise<void> => {
+  return await axios.put(`${baseURL}/lastLogin/${encodeURIComponent(uid)}`);
+};
