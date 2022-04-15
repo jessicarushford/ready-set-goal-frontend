@@ -7,12 +7,26 @@ import Goal from "../models/Goal";
 import { getGoals } from "../services/GoalsService";
 import GoalCard from "./GoalCard";
 import mainNote from "../assets/images/main-note.png";
+import { getUserByUid } from "../services/UserService";
+import User from "../models/User";
+import { Link } from "react-router-dom";
 
 // PUT IN HOME ROUTE
 const DashboardRoute = () => {
   const [quote, setQuote] = useState<ZenQuoteResponse>();
   const { user } = useContext(AuthContext);
   const [goals, setGoals] = useState<Goal[]>([]);
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const lastLoginDate = `${month}${day}${year}`;
+
+  const isLastLoginToday = (uid: string): void => {
+    getUserByUid(uid).then((response) =>
+      response.lastLogin === lastLoginDate ? true : false
+    );
+  };
 
   //get a quote
   useEffect(() => {
@@ -40,6 +54,21 @@ const DashboardRoute = () => {
           <GoalCard key={goal._id} goal={goal} />
         ))}
       </ul>
+      <div>
+        <p>
+          You missed your goal yesterday! Do you want to re-set it to your
+          Today's Goal?
+        </p>
+        <Link to={`/users/me/${user!.uid}`}>
+          <p>YES PLEASE</p>
+        </Link>
+      </div>
+      <div>
+        <p>Congrats! You completed your goal yesterday!</p>
+        <Link to={`/users/me/${user!.uid}`}>
+          <p>LET'S GO!</p>
+        </Link>
+      </div>
     </div>
   );
 };

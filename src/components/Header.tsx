@@ -1,13 +1,21 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
 import { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
-import { createNewUser, getUserByUid } from "../services/UserService";
+import {
+  addLastLogin,
+  createNewUser,
+  getUserByUid,
+} from "../services/UserService";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
 
   useEffect(() => {
     if (user) {
@@ -16,6 +24,7 @@ const Header = () => {
           createNewUser(user.uid, user.displayName!).then(() => {});
         }
       });
+      addLastLogin(user.uid);
     }
   }, [user]);
 
