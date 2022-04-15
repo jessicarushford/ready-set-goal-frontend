@@ -15,8 +15,8 @@ const SummaryRoute = () => {
       <button>ACHIEVED</button>
       <button>MISSED</button>
       <div>PIE CHART?</div>
-      <Calendar />
-      <Calendar />
+      {/* <Calendar />
+      <Calendar /> */}
       {/* previous month calendar */}
     </div>
   );

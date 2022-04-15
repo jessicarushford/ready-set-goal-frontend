@@ -1,12 +1,14 @@
 import "./TodaysCard.css";
 import note from "../assets/note.png";
 import Goal from "../models/Goal";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import QueryStringParams from "../models/QueryStringParams";
+import { getGoals } from "../services/GoalsService";
 
 interface Props {
-  goal: Goal;
+  todaysGoal: Goal;
   onAddLike?: (userUid: string) => void;
   onUnLike?: (userUid: string) => void;
   onGoalCompleted?: (id: string) => void;
@@ -14,20 +16,28 @@ interface Props {
 }
 
 const TodaysCard = ({
-  goal,
+  todaysGoal,
   onAddLike,
   onUnLike,
   onGoalCompleted,
   onGoalMissed,
 }: Props) => {
   const { user } = useContext(AuthContext);
+  // const [goals, setGoals] = useState<Goal[]>([]);
   const location = useLocation();
   const path = location.pathname;
+  // const uid: string | undefined = useParams().uid;
+  // const params: QueryStringParams = {
+  //   uid,
+  // };
 
   //checking if there is the uid in current user's like list
   const isUidInLikes = (goal: Goal, user: any): boolean =>
     goal.likes!.some((like) => like === user.uid);
-  //we don't need isComplete function.
+
+  // useEffect(() => {}, [todaysGoal]);
+
+  console.log(todaysGoal);
 
   return (
     <div className="TodaysCard">
@@ -35,25 +45,25 @@ const TodaysCard = ({
         <img src={note} alt="note-for-goal" />
         <div className="goal-text">
           {user && path === `/users/me/${user!.uid}` ? (
-            goal.completed ? (
+            todaysGoal.completed ? (
               <i
                 className="fa-solid fa-circle-check"
-                onClick={() => onGoalMissed!(goal._id!)}
+                onClick={() => onGoalMissed!(todaysGoal._id!)}
               ></i>
             ) : (
               <i
                 className="fa-regular fa-circle-check"
-                onClick={() => onGoalCompleted!(goal._id!)}
+                onClick={() => onGoalCompleted!(todaysGoal._id!)}
               ></i>
             )
           ) : (
             <></>
           )}
 
-          <p>{goal.date}</p>
-          <p>{goal.goalText}</p>
+          <p>{todaysGoal.date}</p>
+          <p>{todaysGoal.goalText}</p>
           {/* <p>time left: {}</p> */}
-          {user && isUidInLikes(goal, user) ? (
+          {user && isUidInLikes(todaysGoal, user) ? (
             <i
               className="fa-solid fa-thumbs-up"
               onClick={() => onUnLike!(user.uid)}
@@ -64,12 +74,12 @@ const TodaysCard = ({
               onClick={() => onAddLike!(user?.uid!)}
             ></i>
           )}
-          {goal ? (
-            <p className="count-likes">Likes: {goal.likes!.length}</p>
+          {todaysGoal ? (
+            <p className="count-likes">Likes: {todaysGoal.likes!.length}</p>
           ) : (
             <p>Loading</p>
           )}
-          <p>{goal.name}</p>
+          <p>{todaysGoal.name}</p>
         </div>
       </div>
     </div>

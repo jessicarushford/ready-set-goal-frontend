@@ -5,4 +5,5 @@ export default interface User {
   uid: string;
   name: string;
   friends: Friend[];
+  lastLogin: string;
 }

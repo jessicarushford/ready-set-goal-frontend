@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { addLastLogin } from "../services/UserService";
 
 // Login + Dashboard (Quote + Cards)
 const HomeRoute = () => {
@@ -12,6 +13,7 @@ const HomeRoute = () => {
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
+      addLastLogin(user.uid);
     }
   }, [user]);
   return (
