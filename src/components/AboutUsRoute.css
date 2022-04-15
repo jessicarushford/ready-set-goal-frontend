@@ -1,8 +1,47 @@
 .AboutUsRoute {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  /* position: relative; */
+  color: #484848;
+}
+
+.AboutUsRoute .jessica-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  width: 45%;
 }
 
 .AboutUsRoute .main-note {
   width: 400px;
+  position: relative;
+  top: 0px;
+  z-index: -5;
+  display: inline-block;
+}
+
+.AboutUsRoute .headshot-img {
+  position: absolute;
+  width: 180px;
+  right: 200px;
+  top: 15px;
+}
+
+.AboutUsRoute h3 {
+  position: absolute;
+  text-align: right;
+  font-size: 28px;
+  top: 50px;
+  color: #e2a39b;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.AboutUsRoute .jessica-bio {
+  position: absolute;
+  top: 120px;
+  font-size: 12px;
+  text-align: center;
 }
