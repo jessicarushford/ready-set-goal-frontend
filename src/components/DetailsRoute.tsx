@@ -12,6 +12,7 @@ import "./DetailsRoute.css";
 import GoalCard from "./GoalCard";
 import Comment from "../models/Comment";
 import AuthContext from "../context/AuthContext";
+import { getDaysInMonth } from "date-fns";
 
 // Detail Goal Card + Comment Form
 const DetailsRoute = () => {
@@ -49,6 +50,10 @@ const DetailsRoute = () => {
     getAndSetGoal(id!);
   }, [id]);
 
+  let result = getDaysInMonth(
+    new Date(parseInt(goal?.year!), parseInt(goal?.month!))
+  );
+  console.log(result);
   return (
     <div className="DetailsRoute">
       {goal ? (

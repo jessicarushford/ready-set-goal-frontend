@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { getDaysInMonth } from "date-fns";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
 import Goal from "../models/Goal";
 import QueryStringParams from "../models/QueryStringParams";
 import { getGoals } from "../services/GoalsService";
@@ -17,7 +17,6 @@ const Calendar = () => {
   const year = newDate.getFullYear();
   const month = newDate.getMonth();
   const fullDate = `${month + 1}.${date}.${year}`;
-
   const monthNames = [
     "january",
     "february",
@@ -36,6 +35,11 @@ const Calendar = () => {
   const params: QueryStringParams = {
     uid,
   };
+
+  const daysInAMonth = getDaysInMonth(new Date(year, month));
+  console.log(daysInAMonth);
+
+  //click left arrow => get and set goals of last months(month)???
 
   useEffect(() => {
     getGoals(params).then((response) => {

@@ -19,6 +19,10 @@
   display: none;
 }
 
+.Calendar li {
+  border: #484848 1px solid;
+}
+
 .Calendar .tooltip {
   color: #e8a283;
   font-size: 30px;
