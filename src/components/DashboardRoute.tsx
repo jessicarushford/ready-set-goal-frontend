@@ -59,7 +59,7 @@ const DashboardRoute = () => {
           You missed your goal yesterday! Do you want to re-set it to your
           Today's Goal?
         </p>
-        <Link to={`/users/me/${user!.uid}`}>
+        {/* <Link to={`/users/me/${user!.uid}`}>
           <p>YES PLEASE</p>
         </Link>
       </div>
@@ -67,7 +67,7 @@ const DashboardRoute = () => {
         <p>Congrats! You completed your goal yesterday!</p>
         <Link to={`/users/me/${user!.uid}`}>
           <p>LET'S GO!</p>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
