@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { addLastLogin } from "../services/UserService";
+import grayLogo from "../assets/logos/ready-set-goal-gray-logo.png";
 
 // Login + Dashboard (Quote + Cards)
 const HomeRoute = () => {
@@ -18,7 +19,7 @@ const HomeRoute = () => {
   }, [user]);
   return (
     <div className="HomeRoute">
-      <img src="" alt="Logo" />
+      <img src={grayLogo} alt="Logo" />
       <p>Keep your motivation with simple, daily goals.</p>
       <p>We are always rooting for you.</p>
       <button className="login-btn" onClick={signInWithGoogle}>
