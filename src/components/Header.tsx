@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
@@ -16,6 +16,8 @@ const Header = () => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const year = date.getFullYear();
+  const location = useLocation();
+  const path = location.pathname;
 
   useEffect(() => {
     if (user) {
@@ -29,7 +31,7 @@ const Header = () => {
   }, [user]);
 
   return (
-    <header className="Header">
+    <header className={`Header${path === "/" ? " hide" : ""}`}>
       <div className="logo-container">
         <Link to="/dashboard">
           <h1>
