@@ -1,6 +1,54 @@
+.OtherUserRoute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .OtherUserRoute h2 {
   font-family: "Brittany Signature", sans-serif;
   font-size: 36px;
   font-weight: 400;
   text-align: center;
+}
+
+.OtherUserRoute .heading-icon {
+  position: relative;
+}
+
+.OtherUserRoute .fa-user {
+  position: absolute;
+  right: -60px;
+  top: 30px;
+  color: #e2a39b;
+  font-size: 40px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.OtherUserRoute .fa-user:hover {
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.OtherUserRoute .btn {
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  margin: 0 10px;
+  margin-bottom: 10px;
+  box-shadow: 10px 10px 10px -8px rgb(97, 97, 97);
+}
+
+.OtherUserRoute .btn:hover {
+  box-shadow: 10px 10px 10px -6px rgb(37, 37, 37);
+}
+
+.OtherUserRoute .achieved {
+  background-color: #658b92;
+  border: none;
+  color: white;
+}
+
+.OtherUserRoute .missed {
+  border: solid 3px #e8a283;
+  background: none;
+  color: #484848;
 }

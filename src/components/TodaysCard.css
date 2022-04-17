@@ -17,7 +17,7 @@
 
 .TodaysCard img {
   width: 250px;
-  box-shadow: 10px 10px 10px -10px rgb(203, 203, 203);
+  box-shadow: 10px 10px 10px -10px rgb(97, 97, 97);
 }
 
 .TodaysCard .fa-circle-check {
@@ -25,6 +25,7 @@
   top: 0px;
   right: 10px;
   font-size: 32px;
+  color: #658b92;
 }
 
 .TodaysCard .goal-text {
@@ -51,9 +52,6 @@
   bottom: -15px;
   left: 12px;
   font-size: 28px;
-}
-
-.TodaysCard .fa-solid .fa-thumbs-up {
   color: #e8a283;
 }
 

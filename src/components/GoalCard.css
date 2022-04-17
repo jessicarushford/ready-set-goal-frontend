@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 0px 10px 30px 10px;
+  margin: 20px 10px 10px 10px;
 }
 
 .GoalCard a {
@@ -39,12 +39,12 @@
   color: #658b92;
 }
 
-.GoalCard .fa-solid,
-.GoalCard .fa-regular {
+.GoalCard .fa-thumbs-up {
   position: absolute;
   bottom: -25px;
   left: 12px;
   font-size: 18px;
+  color: #e2a39b;
 }
 
 .GoalCard .count-likes {
