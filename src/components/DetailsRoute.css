@@ -22,12 +22,12 @@
   padding-left: 10px;
 }
 
-.DetailsRoute .comments {
+/* .DetailsRoute .comments {
   font-family: "Brittany Signature", sans-serif;
   font-size: 30px;
   color: #484848;
   text-align: center;
-}
+} */
 
 .DetailsRoute form {
   display: flex;
