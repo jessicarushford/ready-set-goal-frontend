@@ -53,7 +53,6 @@ const Calendar = ({ todaysGoal }: Props) => {
     }
   }
   console.log(calendarCells);
-  //click left arrow => get and set goals of last months(month)???
 
   useEffect(() => {
     getGoals(params).then((response) => {
@@ -63,14 +62,7 @@ const Calendar = ({ todaysGoal }: Props) => {
 
   return (
     <div className="Calendar">
-      {/* <div className="calendar-header">
-        <i className="fa-solid fa-angles-left" onClick={()=>{}}></i>
-        <p>
-          {monthName} {year}
-        </p>
-        <i className="fa-solid fa-angles-right"></i>
-      </div> */}
-      <p>
+      <p className="monthName">
         {monthName} {year}
       </p>
       <ul>
@@ -79,7 +71,7 @@ const Calendar = ({ todaysGoal }: Props) => {
             return cell ? (
               <Link to={`/goals/details/${cell._id}`}>
                 <li className="tooltip" data-tooltip="go to the detail page">
-                  <p> {index + 1}</p>
+                  <p className="index"> {index + 1}</p>
                   {cell.completed ? (
                     <i className="fa-solid fa-star"></i>
                   ) : (
@@ -89,7 +81,7 @@ const Calendar = ({ todaysGoal }: Props) => {
               </Link>
             ) : (
               <li>
-                <p>{index + 1}</p>
+                <p className="index">{index + 1}</p>
               </li>
             );
           })}
@@ -99,6 +91,17 @@ const Calendar = ({ todaysGoal }: Props) => {
 };
 
 export default Calendar;
+
+//click left arrow => get and set goals of last months(month)???
+{
+  /* <div className="calendar-header">
+        <i className="fa-solid fa-angles-left" onClick={()=>{}}></i>
+        <p>
+          {monthName} {year}
+        </p>
+        <i className="fa-solid fa-angles-right"></i>
+      </div> */
+}
 
 // {goals &&
 //   goals.map(

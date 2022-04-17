@@ -44,10 +44,12 @@ const DashboardRoute = () => {
   return (
     <div className="DashboardRoute">
       {user ? <h2>welcome, {user.displayName?.toLowerCase()}</h2> : <h2></h2>}
-      <div className="quote">
+      <div className="quote-note">
         <img src={mainNote} alt="Main Note" className="main-note" />
-        {quote ? <p className="quote-p">"{quote.q}"</p> : <p>Loading</p>}
-        {quote ? <p className="author-p">-{quote.a}</p> : <p>Loading</p>}
+        <div className="quote">
+          {quote ? <p className="quote-p">"{quote.q}"</p> : <p>Loading</p>}
+          {quote ? <p className="author-p">-{quote.a}</p> : <p>Loading</p>}
+        </div>
       </div>
       <ul className="goals">
         {goals.map((goal) => (
