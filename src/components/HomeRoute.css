@@ -40,11 +40,11 @@
   font-size: 24px;
   font-weight: 200;
   margin: 10px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 5px #979595;
 }
 
 .HomeRoute .login-btn:hover {
-  box-shadow: 4px 4px 5px #979595;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .HomeRoute .guest-btn {
