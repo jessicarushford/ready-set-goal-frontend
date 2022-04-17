@@ -23,19 +23,12 @@ const TodaysCard = ({
   onGoalMissed,
 }: Props) => {
   const { user } = useContext(AuthContext);
-  // const [goals, setGoals] = useState<Goal[]>([]);
   const location = useLocation();
   const path = location.pathname;
-  // const uid: string | undefined = useParams().uid;
-  // const params: QueryStringParams = {
-  //   uid,
-  // };
 
   //checking if there is the uid in current user's like list
   const isUidInLikes = (goal: Goal, user: any): boolean =>
     goal.likes!.some((like) => like === user.uid);
-
-  // useEffect(() => {}, [todaysGoal]);
 
   console.log(todaysGoal);
 
