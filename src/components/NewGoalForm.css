@@ -1,5 +1,5 @@
 .NewGoalForm {
-  width: 60%;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,4 +36,10 @@
 
 .NewGoalForm .add-btn:hover {
   box-shadow: 4px 4px 6px #686666;
+}
+
+@media only screen and (min-width: 764px) {
+  .NewGoalForm {
+    width: 600px;
+  }
 }

@@ -1,7 +1,7 @@
 .Calendar {
   margin: 20px;
   background-color: rgba(228, 228, 228, 0.4);
-  width: 70%;
+  width: 300px;
   padding-top: 20px;
   padding-bottom: 30px;
   display: flex;
@@ -15,7 +15,7 @@
   margin: 0;
   padding: 0;
   margin-top: 20px;
-  width: 224px; /* > li width * 7 */
+  width: 260px; /* > li width * 7 */
 }
 .Calendar a {
   text-decoration: none;
@@ -40,8 +40,8 @@
 .Calendar li {
   border: #658b92 1px solid;
   color: #484848;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   list-style: none;
   background-color: white;
   position: relative;
@@ -57,6 +57,10 @@
 }
 
 @media only screen and (min-width: 500px) and (max-width: 764px) {
+  .Calendar {
+    width: 400px;
+  }
+
   .Calendar ul {
     width: 364px;
   }
@@ -75,6 +79,10 @@
 }
 
 @media only screen and (min-width: 764px) {
+  .Calendar {
+    width: 600px;
+  }
+
   .Calendar ul {
     width: 560px;
   }
