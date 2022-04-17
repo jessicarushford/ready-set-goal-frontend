@@ -20,8 +20,11 @@ const HomeRoute = () => {
   return (
     <div className="HomeRoute">
       <img src={grayLogo} alt="Logo" />
-      <p>Keep your motivation with simple, daily goals.</p>
-      <p>We are always rooting for you.</p>
+      <div className="welcome">
+        <p>Keep your motivation with simple, daily goals.</p>
+        <p>We are always rooting for you.</p>
+      </div>
+
       <button className="login-btn" onClick={signInWithGoogle}>
         LOGIN
       </button>
