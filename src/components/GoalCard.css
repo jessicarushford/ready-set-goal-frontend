@@ -25,7 +25,7 @@
   width: 250px;
   box-sizing: border-box;
   padding: 10px;
-  top: 40px;
+  top: 37px;
   position: absolute;
   text-align: center;
 }
@@ -41,14 +41,15 @@
 
 .GoalCard .fa-thumbs-up {
   position: absolute;
-  bottom: -25px;
+  bottom: 18px;
   left: 12px;
-  font-size: 18px;
+  font-size: 20px;
   color: #e2a39b;
 }
 
 .GoalCard .count-likes {
   position: absolute;
-  bottom: -48px;
+  bottom: -5px;
   left: 40px;
+  font-size: 18px;
 }

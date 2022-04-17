@@ -1,0 +1,28 @@
+.CommentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 60%;
+}
+.CommentForm textarea {
+  background-color: rgba(181, 149, 126, 0.67);
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 100%;
+}
+
+.CommentForm textarea::placeholder {
+  color: #484848;
+}
+
+.CommentForm button {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #658b92;
+  color: white;
+  height: 50px;
+  font-size: 20px;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
