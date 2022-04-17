@@ -53,3 +53,39 @@
   left: 40px;
   font-size: 18px;
 }
+
+.GoalCard .goal-result {
+  font-size: 200px;
+  background: rgba(232, 162, 131, 0.6);
+  color: transparent;
+  text-shadow: 4px 3px 3px rgba(255, 255, 255, 0.3);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.GoalCard .result-text {
+  font-family: "Arial Rounded MT Bold";
+  transform: rotate(-18deg);
+  margin: 0;
+}
+
+.GoalCard .missed {
+  color: rgba(255, 0, 0, 0.34);
+  font-size: 57px;
+  position: absolute;
+  top: 100px;
+  left: 17px;
+}
+
+.GoalCard .complete {
+  color: rgba(101, 139, 146, 0.6);
+  font-size: 45px;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+}

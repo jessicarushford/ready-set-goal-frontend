@@ -62,6 +62,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
         id="goalText"
         cols={30}
         rows={10}
+        maxLength={80}
         value={goalText}
         placeholder="Today my goal is to ..."
         required
