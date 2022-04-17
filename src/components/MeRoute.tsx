@@ -95,9 +95,7 @@ const MeRoute = () => {
               onGoalMissed={goalMissed}
             />
           ) : (
-            <div className="new-goal-form-container">
-              <NewGoalForm onAddGoal={addTodaysGoal} />
-            </div>
+            <NewGoalForm onAddGoal={addTodaysGoal} />
           )}
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
             <button className="previous-btn">PREVIOUS GOALS</button>

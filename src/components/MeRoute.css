@@ -1,23 +1,22 @@
 .MeRoute {
   /* font family */
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.MeRoute .new-goal-form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
+.MeRoute h3 {
+  padding-top: 20px;
 }
 
 .MeRoute .previous-btn {
   background-color: #e8a283;
   border: none;
   color: #fff;
-  width: 40%;
   padding: 8px;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .MeRoute .previous-btn:hover {

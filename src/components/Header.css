@@ -4,7 +4,6 @@
 
 .Header .logo-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -17,6 +16,9 @@
   color: #484848;
   font-size: 40px;
   text-shadow: 4px 4px 5px #979595;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .Header .side-bar-menu {
