@@ -41,6 +41,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
       <select
         name="category"
         id="category"
+        className="form-content"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         required
@@ -56,6 +57,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
         <option value="other">Other</option>
       </select>
       <textarea
+        className="form-content"
         name="goalText"
         id="goalText"
         cols={30}

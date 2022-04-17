@@ -88,29 +88,43 @@ const OtherUserRoute = () => {
   return (
     <div className="OtherUserRoute">
       <h2>{otherUser && otherUser!.name.toLowerCase()}'s page</h2>
-      <h3>TODAY'S GOAL</h3>
-      {todaysGoal && <TodaysCard todaysGoal={todaysGoal} />}
-      {user && isFriend(otherUserUid!) ? (
-        <i
-          className="fa-solid fa-user"
-          onClick={() => {
-            removeFriend(user.uid, otherUserUid!);
-          }}
-        ></i>
+      <div className="heading-icon">
+        <h3>TODAY'S GOAL</h3>
+        {user && isFriend(otherUserUid!) ? (
+          <i
+            className="fa-solid fa-user"
+            onClick={() => {
+              removeFriend(user.uid, otherUserUid!);
+            }}
+          ></i>
+        ) : (
+          <i
+            className="fa-regular fa-user"
+            onClick={() => {
+              addFriend(user!.uid, {
+                uid: otherUserUid!,
+                name: otherUser!.name,
+              });
+            }}
+          ></i>
+        )}
+      </div>
+
+      {todaysGoal ? (
+        <TodaysCard todaysGoal={todaysGoal} />
       ) : (
-        <i
-          className="fa-regular fa-user"
-          onClick={() => {
-            addFriend(user!.uid, {
-              uid: otherUserUid!,
-              name: otherUser!.name,
-            });
-          }}
-        ></i>
+        <p>NO TODAY'S GOAL YET!</p>
       )}
+
       <h3>PREVIOUS GOALS</h3>
-      <button onClick={() => setAchieved(true)}>Achieved</button>
-      <button onClick={() => setAchieved(false)}>Missed</button>
+      <div className="btns">
+        <button className="achieved btn" onClick={() => setAchieved(true)}>
+          Achieved
+        </button>
+        <button className="missed btn" onClick={() => setAchieved(false)}>
+          Missed
+        </button>
+      </div>
       <ul>
         {goals
           .filter((goal) => goal.completed === achieved && goal !== todaysGoal)

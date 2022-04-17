@@ -15,10 +15,11 @@
   color: #fff;
   padding: 8px;
   font-size: 18px;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 20px;
+  box-shadow: 3px 3px 4px #979595;
 }
 
 .MeRoute .previous-btn:hover {
-  box-shadow: 4px 4px 5px #979595;
+  box-shadow: 4px 4px 6px #686666;
 }

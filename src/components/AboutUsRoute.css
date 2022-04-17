@@ -12,36 +12,67 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 55%;
+  width: 300px;
 }
 
 .AboutUsRoute .main-note {
   width: 100%;
   z-index: -5;
-  display: inline-block;
 }
 
 .AboutUsRoute h3 {
   position: absolute;
-  top: 70px;
-  right: 80px;
-  width: 50%;
-  font-size: 30px;
+  top: 40px;
+  right: 50px;
+
+  font-size: 20px;
   color: #e2a39b;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .AboutUsRoute .headshot-img {
   position: absolute;
-  top: 80px;
+  top: 90px;
   left: 60px;
   width: 25%;
 }
 
-.AboutUsRoute .bio {
+.AboutUsRoute .short-bio {
   position: absolute;
-  top: 210px;
-  font-size: 13px;
-  width: 70%;
+  top: 160px;
+  font-size: 15px;
   text-align: center;
+}
+
+.AboutUsRoute .bio {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .AboutUsRoute .us-container {
+    width: 600px;
+  }
+
+  .AboutUsRoute h3 {
+    font-size: 35px;
+    top: 100px;
+    right: 100px;
+  }
+
+  .AboutUsRoute .april-name {
+    width: 40%;
+    top: 80px;
+    right: 130px;
+  }
+
+  .AboutUsRoute .short-bio {
+    display: none;
+  }
+
+  .AboutUsRoute .bio {
+    display: block;
+    position: absolute;
+    top: 220px;
+    width: 420px;
+  }
 }
