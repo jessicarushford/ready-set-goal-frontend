@@ -4,6 +4,7 @@ import note from "../assets/note.png";
 import "./GoalCard.css";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
+import { getGoalById, goalIsCompleted } from "../services/GoalsService";
 
 interface Props {
   goal: Goal;
@@ -15,6 +16,11 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
   const path = location.pathname;
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const fullDate = `${month}.${day}.${year}`;
 
   const isUidInLikes = (goal: Goal, user: any): boolean => {
     return goal.likes!.some((like) => like === user.uid);
@@ -75,6 +81,25 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
             </>
           )}
         </div>
+        {user && path === `/goals/details/${goal._id}` ? (
+          !goal.completed ? (
+            goal.date !== fullDate ? (
+              <>
+                <i className="fa-solid fa-x goal-result"></i>
+                <p className="result-text missed">MISSED</p>
+              </>
+            ) : (
+              <></>
+            )
+          ) : (
+            <>
+              <i className="fa-solid fa-star goal-result"></i>
+              <p className="result-text complete">COMPLETE</p>
+            </>
+          )
+        ) : (
+          <></>
+        )}
       </div>
     </li>
   );
