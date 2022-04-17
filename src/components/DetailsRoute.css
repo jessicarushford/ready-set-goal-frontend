@@ -5,11 +5,18 @@
   padding-bottom: 40px;
 }
 
+.DetailsRoute h3 {
+  font-family: "Brittany Signature", sans-serif;
+  color: #484848;
+  font-size: 36px;
+  margin: 20px 0 10px 0;
+}
+
 .DetailsRoute .comment-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 0px;
   width: 60%;
 }
 

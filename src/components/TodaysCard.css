@@ -26,6 +26,11 @@
   right: 10px;
   font-size: 32px;
   color: #658b92;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.TodaysCard .fa-circle-check:hover {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 .TodaysCard .goal-text {
@@ -53,6 +58,11 @@
   left: 12px;
   font-size: 28px;
   color: #e8a283;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.TodaysCard .fa-thumbs-up:hover {
+  text-shadow: 3px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .TodaysCard .count-likes {

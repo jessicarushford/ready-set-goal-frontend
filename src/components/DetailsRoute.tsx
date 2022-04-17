@@ -61,6 +61,7 @@ const DetailsRoute = () => {
       ) : (
         <p>Loading</p>
       )}
+      <h3>comments</h3>
       <ul className="comment-list">
         {goal?.comments?.map((comment) => (
           <li className="comment">

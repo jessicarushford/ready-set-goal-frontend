@@ -48,7 +48,7 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
                 <p>{goal.date}</p>
                 <p>{goal.goalText}</p>
                 <Link to={`/users/${goal.uid!}`}>
-                  <p className="name">{goal.name}</p>
+                  <p className="name link-name">{goal.name}</p>
                 </Link>
               </div>
 

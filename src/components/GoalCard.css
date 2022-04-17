@@ -39,23 +39,36 @@
   color: #658b92;
 }
 
+.GoalCard .link-name {
+  font-weight: bold;
+}
+
+.GoalCard .link-name:hover {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
 .GoalCard .fa-thumbs-up {
   position: absolute;
   bottom: 18px;
   left: 12px;
-  font-size: 20px;
+  font-size: 24px;
   color: #e2a39b;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.GoalCard .fa-thumbs-up:hover {
+  text-shadow: 3px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .GoalCard .count-likes {
   position: absolute;
-  bottom: -5px;
-  left: 40px;
+  bottom: -2px;
+  left: 43px;
   font-size: 18px;
 }
 
 .GoalCard .goal-result {
-  font-size: 200px;
+  font-size: 100px;
   background: rgba(232, 162, 131, 0.6);
   color: transparent;
   text-shadow: 4px 3px 3px rgba(255, 255, 255, 0.3);
@@ -63,7 +76,7 @@
   -moz-background-clip: text;
   background-clip: text;
   position: absolute;
-  top: 40px;
+  top: 45px;
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -76,16 +89,16 @@
 
 .GoalCard .missed {
   color: rgba(255, 0, 0, 0.34);
-  font-size: 57px;
+  font-size: 50px;
   position: absolute;
-  top: 100px;
-  left: 17px;
+  top: 70px;
+  left: 30px;
 }
 
 .GoalCard .complete {
   color: rgba(101, 139, 146, 0.6);
-  font-size: 45px;
+  font-size: 40px;
   position: absolute;
-  bottom: 100px;
-  left: 0;
+  top: 80px;
+  left: 10px;
 }

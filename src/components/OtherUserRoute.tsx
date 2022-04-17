@@ -87,9 +87,8 @@ const OtherUserRoute = () => {
 
   return (
     <div className="OtherUserRoute">
-      <h2>{otherUser && otherUser!.name.toLowerCase()}'s page</h2>
       <div className="heading-icon">
-        <h3>TODAY'S GOAL</h3>
+        <h2>{otherUser && otherUser!.name.toLowerCase()}'s page</h2>
         {user && isFriend(otherUserUid!) ? (
           <i
             className="fa-solid fa-user"
@@ -109,6 +108,8 @@ const OtherUserRoute = () => {
           ></i>
         )}
       </div>
+
+      <h3>TODAY'S GOAL</h3>
 
       {todaysGoal ? (
         <TodaysCard todaysGoal={todaysGoal} />
