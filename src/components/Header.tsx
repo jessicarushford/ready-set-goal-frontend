@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../firebaseConfig";
 import "./Header.css";
 import logo from "../assets/logos/ready-set-goal-gray-logo.png";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import {
   addLastLogin,
@@ -11,8 +11,12 @@ import {
 } from "../services/UserService";
 import QueryStringParams from "../models/QueryStringParams";
 import { getGoalById, getGoals } from "../services/GoalsService";
+import Goal from "../models/Goal";
 
 const Header = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [goals, setGoals] = useState<Goal[]>([]);
   const { user } = useContext(AuthContext);
   const date = new Date();
   const month = date.getMonth() + 1;
@@ -20,38 +24,33 @@ const Header = () => {
   const year = date.getFullYear();
   const location = useLocation();
   const path = location.pathname;
-  const lastLoginDate = `${month}.${day}.${year}`;
+  const todaysDate = `${month}.${day}.${year}`;
   const params: QueryStringParams = {
     uid: user?.uid,
   };
 
-  //for notification only once, check if user signed in already for today or not.
-  //true : false not neccessary?
-  const isLastLoginToday = (uid: string): void => {
-    getUserByUid(uid).then((response) => {
-      if (response.lastLogin) {
-        return response.lastLogin === lastLoginDate ? true : false;
-      }
-    });
+  const removePopUp = (): void => {
+    setIsActive(!isActive);
   };
 
-  //check if they have a goal. we'll check the last login, so we don't need to check if the goal is today's goal or not. it should be always past goal as long as the isLastLogin is truthy.
-  const isPastGoal = (params: QueryStringParams): void => {
-    getGoals(params).then((response) => (response ? true : false));
+  const addLastLoginAndRemovePopUp = (uid: string): void => {
+    addLastLogin(uid);
+    setIsActive(false);
   };
-
-  //what if they visited the website yesterday and didn't make a goal and then try to go to the website today?
-  //still you can see the pop up?? maybe yes
-  //the goal they made last time is not always yesterday goal
 
   useEffect(() => {
     if (user) {
+      setIsActive(true);
       getUserByUid(user.uid).then((response) => {
         if (!response) {
           createNewUser(user.uid, user.displayName!).then(() => {});
+        } else {
+          if (response.lastLogin !== todaysDate) {
+            getGoals(params).then((response) => setGoals(response));
+            setShowPopUp(true);
+          }
         }
       });
-      addLastLogin(user.uid);
     }
   }, [user]);
 
@@ -123,30 +122,65 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-        {/* {user && !isLastLoginToday && isPastGoal(params) ? (
+        {showPopUp && goals.length ? (
           <>
-            <div>
-              <p>
-                You missed your last goal! Do you want to re-set it to your
-                Today's Goal?
-              </p>
-              <Link to={`/users/me/${user!.uid}`}>
-                <p>YES PLEASE</p>
-              </Link>
-            </div>
-            <div>
-              <p>Congrats! You completed your last goal!</p>
-              <Link to={`/users/me/${user!.uid}`}>
-                <p>LET'S GO!</p>
-              </Link>
-            </div>
+            {goals[goals.length - 1].completed && (
+              <div className={!isActive ? "hide" : ""}>
+                <i className="fa-solid fa-x" onClick={removePopUp}></i>
+                <p>congrats!</p>
+                <p>You completed your last goal!</p>
+                <Link to={`/users/me/${user?.uid}`}>
+                  <button
+                    onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
+                  >
+                    LET'S GO!
+                  </button>
+                </Link>
+              </div>
+            )}
+            {!goals[goals.length - 1].completed && (
+              <div className={!isActive ? "hide" : ""}>
+                <i className="fa-solid fa-x" onClick={removePopUp}></i>
+                <p>oh no!</p>
+                <p>
+                  You missed your last goal! Do you want to re-set it to your
+                  Today's Goal?
+                </p>
+                <Link to={`/users/me/${user?.uid}`}>
+                  <button
+                    onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
+                  >
+                    YES PLEASE
+                  </button>
+                </Link>
+              </div>
+            )}
           </>
         ) : (
-          <></>
-        )} */}
+          <div className={!isActive ? "hide" : ""}>
+            <Link to="/dashboard">
+              <i className="fa-solid fa-x" onClick={removePopUp}></i>
+            </Link>
+            <p>welcome!</p>
+            <p>We are so excited for you to join ready, set, goal!</p>
+            <Link to={`/users/me/${user?.uid}`}>
+              <button onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}>
+                LET'S GET STARTED
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
 };
 
 export default Header;
+{
+  /* <div>
+<p>Congrats! You completed your last goal!</p>
+<Link to={`/users/me/${user!.uid}`}>
+  <p>LET'S GO!</p>
+</Link>
+</div> */
+}
