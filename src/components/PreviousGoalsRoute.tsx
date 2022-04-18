@@ -10,7 +10,7 @@ import "./PreviousGoalsRoute.css";
 const PreviousGoalsRoute = () => {
   const { user } = useContext(AuthContext);
   const [goals, setGoals] = useState<Goal[]>([]);
-  const [achieved, setAchieved] = useState(true);
+  const [completed, setCompleted] = useState("");
   const [todaysGoal, setTodaysGoal] = useState<Goal | undefined>();
   const newDate: Date = new Date();
   const year = newDate.getFullYear();
@@ -25,6 +25,7 @@ const PreviousGoalsRoute = () => {
   const goalKeyword = searchParams.get("keyword");
   const goalCategory = searchParams.get("category");
   const goalFilterDate = searchParams.get("filterDate");
+  const goalComplete = searchParams.get("completed");
   console.log(goalCategory, goalKeyword, goalFilterDate);
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -36,18 +37,15 @@ const PreviousGoalsRoute = () => {
       ...(keyword ? { keyword } : {}),
       ...(category ? { category } : {}),
       ...(filterDate ? { filterDate } : {}),
+      ...(completed ? { completed } : {}),
     };
-    // goals
-    //   .filter((goal) => goal.category === goal.category)
-    //   .map((goal) => {
-    //     <GoalCard key={goal._id} goal={goal} />;
-    //   });
 
     navigate(`/users/me/previous/${user?.uid!}?${new URLSearchParams(params)}`);
 
     setKeyword("");
     setCategory("");
     setFilterDate("");
+    setCompleted("");
   };
 
   useEffect(() => {
@@ -63,7 +61,7 @@ const PreviousGoalsRoute = () => {
     let filteredArray = goals;
     if (goalKeyword) {
       filteredArray = filteredArray.filter((goal) =>
-        goal.goalText.includes(goalKeyword)
+        goal.goalText.toLowerCase().includes(goalKeyword.toLowerCase())
       );
     }
     if (goalCategory) {
@@ -75,6 +73,16 @@ const PreviousGoalsRoute = () => {
       filteredArray = filteredArray.filter(
         (goal) => goal.date === goalFilterDate
       );
+      // if (completed) {
+      //   // if (goalComplete === "achieved") {
+      //   //   let newGoalComplete: boolean = goalComplete
+      //   //   newGoalComplete = true
+      //   // }
+
+      //   filteredArray = filteredArray.filter(
+      //     (goal) => goal.completed === goalComplete
+      //   );
+      // }
     }
     console.log(filteredArray);
     return filteredArray;
@@ -120,12 +128,30 @@ const PreviousGoalsRoute = () => {
           </select>
           <i className="fa-solid fa-angle-down"></i>
         </div>
-        <div>{/* Search by date */}</div>
-        {/* <button></button>SUBMIT BUTTON? */}
-        <div>{/* <GoalCard /> MAP THRU GOAL CARDS OF SEARCH */}</div>
+        <div>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            value={filterDate}
+            onChange={(e) => setFilterDate(e.target.value)}
+          />
+        </div>
+        <div>
+          <select
+            name="completed"
+            id="completed"
+            value={completed}
+            onChange={(e) => setCompleted(e.target.value)}
+          >
+            <option value="" disabled hidden>
+              Completed?
+            </option>
+            <option value="achieved">Achieved</option>
+            <option value="missed">Missed</option>
+          </select>
+        </div>
       </form>
-      <button onClick={() => setAchieved(true)}>ACHIEVED</button>
-      <button onClick={() => setAchieved(false)}>MISSED</button>
       <button onClick={submitHandler}>Submit</button>
       <ul>
         {filterGoals().map((goal) => (

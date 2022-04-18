@@ -34,11 +34,10 @@
   font-size: 20px;
   margin: 0 10px;
   margin-bottom: 10px;
-  box-shadow: 10px 10px 10px -8px rgb(97, 97, 97);
 }
 
 .OtherUserRoute .btn:hover {
-  box-shadow: 10px 10px 10px -6px rgb(37, 37, 37);
+  box-shadow: 10px 10px 10px -10px rgb(97, 97, 97);
 }
 
 .OtherUserRoute .achieved {
