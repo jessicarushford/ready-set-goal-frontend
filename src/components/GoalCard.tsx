@@ -4,7 +4,6 @@ import note from "../assets/note.png";
 import "./GoalCard.css";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
-import { getGoalById, goalIsCompleted } from "../services/GoalsService";
 
 interface Props {
   goal: Goal;
@@ -25,6 +24,9 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const isUidInLikes = (goal: Goal, user: any): boolean => {
     return goal.likes!.some((like) => like === user.uid);
   };
+
+  //goal.name === user.displayName && there is no todays goal.
+  //click? => add newGoal
 
   //timer -> use library 'date-fns'? maybe make another component
 
