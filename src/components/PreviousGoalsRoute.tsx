@@ -1,5 +1,5 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Goal from "../models/Goal";
 import QueryStringParams from "../models/QueryStringParams";
@@ -21,23 +21,31 @@ const PreviousGoalsRoute = () => {
   const params: QueryStringParams = {
     uid: userUid,
   };
+  const [searchParams] = useSearchParams();
+  const goalKeyword = searchParams.get("keyword");
+  const goalCategory = searchParams.get("category");
+  const goalFilterDate = searchParams.get("filterDate");
+  console.log(goalCategory, goalKeyword, goalFilterDate);
+  const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const [filterDate, setFilterDate] = useState("");
-
   const submitHandler = (e: FormEvent): void => {
+    e.preventDefault();
     const params: any = {
       ...(keyword ? { keyword } : {}),
       ...(category ? { category } : {}),
       ...(filterDate ? { filterDate } : {}),
     };
-    goals
-      .filter((goal) => goal.category === goal.category)
-      .map((goal) => {
-        <GoalCard key={goal._id} goal={goal} />;
-      });
+    // goals
+    //   .filter((goal) => goal.category === goal.category)
+    //   .map((goal) => {
+    //     <GoalCard key={goal._id} goal={goal} />;
+    //   });
 
-    setKeyword("Search");
+    navigate(`/users/me/previous/${user?.uid!}?${new URLSearchParams(params)}`);
+
+    setKeyword("");
     setCategory("");
     setFilterDate("");
   };
@@ -50,6 +58,27 @@ const PreviousGoalsRoute = () => {
       setTodaysGoal(todaysgoal);
     });
   }, []);
+
+  const filterGoals = () => {
+    let filteredArray = goals;
+    if (goalKeyword) {
+      filteredArray = filteredArray.filter((goal) =>
+        goal.goalText.includes(goalKeyword)
+      );
+    }
+    if (goalCategory) {
+      filteredArray = filteredArray.filter(
+        (goal) => goal.category === goalCategory
+      );
+    }
+    if (goalFilterDate) {
+      filteredArray = filteredArray.filter(
+        (goal) => goal.date === goalFilterDate
+      );
+    }
+    console.log(filteredArray);
+    return filteredArray;
+  };
 
   return (
     <div className="PreviousGoalsRoute">
@@ -97,12 +126,11 @@ const PreviousGoalsRoute = () => {
       </form>
       <button onClick={() => setAchieved(true)}>ACHIEVED</button>
       <button onClick={() => setAchieved(false)}>MISSED</button>
+      <button onClick={submitHandler}>Submit</button>
       <ul>
-        {goals
-          .filter((goal) => goal.completed === achieved && goal !== todaysGoal)
-          .map((goal) => (
-            <GoalCard key={goal._id} goal={goal} />
-          ))}
+        {filterGoals().map((goal) => (
+          <GoalCard key={goal._id} goal={goal} />
+        ))}
       </ul>
     </div>
   );
