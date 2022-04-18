@@ -6,7 +6,6 @@ import AuthContext from "./AuthContext";
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    // useEffect to only register once at start
     return auth.onAuthStateChanged((newUser) => {
       setUser(newUser);
     });
