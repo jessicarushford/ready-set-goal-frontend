@@ -14,7 +14,6 @@ const HomeRoute = () => {
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
-      addLastLogin(user.uid);
     }
   }, [user]);
   return (

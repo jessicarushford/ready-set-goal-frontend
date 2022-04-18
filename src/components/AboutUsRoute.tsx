@@ -15,7 +15,7 @@ const AboutUsRoute = () => {
           alt="Jessica Rushford Headshot"
           className="headshot-img"
         />
-        <p className="short-bio">Nice to meet you!</p>
+
         <p className="bio">
           During the last 10 years in the fitness industry, I have worked on a
           small core team, led multiple high-volume projects and events with
@@ -32,9 +32,9 @@ const AboutUsRoute = () => {
       </div>
       <div className="us-container">
         <img src={mainNote} alt="Paper Note" className="main-note" />
-        <h3 className="heading april-name">sooyeon (april) hong</h3>
+        <h3 className="heading april-name">sooyeon hong</h3>
         <img src={april} alt="April's Headshot" className="headshot-img" />
-        <p className="short-bio">Nice to meet you!</p>
+
         <p className="bio">
           Highly efficient and creative teamplayer, with 5 years of previous
           experience in educational services and customer service. Currently
