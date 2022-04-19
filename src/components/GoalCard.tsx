@@ -3,7 +3,8 @@ import Goal from "../models/Goal";
 import note from "../assets/note.png";
 import "./GoalCard.css";
 import AuthContext from "../context/AuthContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { getGoalById } from "../services/GoalsService";
 
 interface Props {
   goal: Goal;
@@ -20,11 +21,17 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const day = date.getDate();
   const year = date.getFullYear();
   const fullDate = `${month}.${day}.${year}`;
+  const [testGoal, setTestGoal] = useState<Goal>(goal);
 
   const isUidInLikes = (goal: Goal, user: any): boolean => {
     return goal.likes!.some((like) => like === user.uid);
   };
 
+  useEffect(() => {
+    getGoalById(goal!._id!).then((response) => {
+      setTestGoal(response);
+    });
+  }, []);
   //goal.name === user.displayName && there is no todays goal.
   //click? => add newGoal
 
@@ -103,6 +110,15 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
           <></>
         )}
       </div>
+      {user &&
+      path === `/goals/details/${goal._id}` &&
+      goal.date !== fullDate ? (
+        <Link to={`/users/me/${user.uid}`} state={{ goal: goal }}>
+          <i className="fa-solid fa-circle-question"></i>
+        </Link>
+      ) : (
+        <></>
+      )}
     </li>
   );
 };

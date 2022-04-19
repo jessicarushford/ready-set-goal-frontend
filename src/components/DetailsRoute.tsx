@@ -6,6 +6,7 @@ import {
   addUidToLikes,
   deleteComment,
   getGoalById,
+  getGoals,
   takeOffUidFromLikes,
 } from "../services/GoalsService";
 import CommentForm from "./CommentForm";
@@ -13,6 +14,7 @@ import "./DetailsRoute.css";
 import GoalCard from "./GoalCard";
 import Comment from "../models/Comment";
 import AuthContext from "../context/AuthContext";
+import QueryStringParams from "../models/QueryStringParams";
 
 // Detail Goal Card + Comment Form
 const DetailsRoute = () => {

@@ -16,6 +16,7 @@ import Calendar from "./Calendar";
 import "./MeRoute.css";
 import NewGoalForm from "./NewGoalForm";
 import TodaysCard from "./TodaysCard";
+import { useLocation } from "react-router-dom";
 
 // New Goal Form + Today's coard + Previous Achieved/Missed Goal Cards + Calendar
 const MeRoute = () => {
@@ -31,6 +32,8 @@ const MeRoute = () => {
   const params: QueryStringParams = {
     uid,
   };
+  const location: any = useLocation();
+  console.log(location.state.goal.category);
 
   //get all goals of a user with a given uid and set goals and set today's goal where todays's date and goal's date are matched
   const getAndSetTodaysGoal = (params: QueryStringParams) => {
@@ -95,7 +98,11 @@ const MeRoute = () => {
               onGoalMissed={goalMissed}
             />
           ) : (
-            <NewGoalForm onAddGoal={addTodaysGoal} />
+            <NewGoalForm
+              onAddGoal={addTodaysGoal}
+              detailCategory={location.state.goal.category}
+              detailGoalText={location.state.goal.goalText}
+            />
           )}
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
             <button className="previous-btn">PREVIOUS GOALS</button>
