@@ -29,10 +29,6 @@ const Header = () => {
     uid: user?.uid,
   };
 
-  const removePopUp = (): void => {
-    setIsActive(!isActive);
-  };
-
   const addLastLoginAndRemovePopUp = (uid: string): void => {
     addLastLogin(uid);
     setIsActive(false);
@@ -40,14 +36,16 @@ const Header = () => {
 
   useEffect(() => {
     if (user) {
-      setIsActive(true);
       getUserByUid(user.uid).then((response) => {
         if (!response) {
           createNewUser(user.uid, user.displayName!).then(() => {});
         } else {
           if (response.lastLogin !== todaysDate) {
+            console.log(response.lastLogin);
             getGoals(params).then((response) => setGoals(response));
+            setIsActive(true);
             setShowPopUp(true);
+            console.log(showPopUp);
           }
         }
       });
@@ -122,11 +120,16 @@ const Header = () => {
             </ul>
           </nav>
         </div>
+      </div>
+      <div>
         {showPopUp && goals.length ? (
           <>
             {goals[goals.length - 1].completed && (
               <div className={!isActive ? "hide" : ""}>
-                <i className="fa-solid fa-x" onClick={removePopUp}></i>
+                <i
+                  className="fa-solid fa-x"
+                  onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
+                ></i>
                 <p>congrats!</p>
                 <p>You completed your last goal!</p>
                 <Link to={`/users/me/${user?.uid}`}>
@@ -140,7 +143,10 @@ const Header = () => {
             )}
             {!goals[goals.length - 1].completed && (
               <div className={!isActive ? "hide" : ""}>
-                <i className="fa-solid fa-x" onClick={removePopUp}></i>
+                <i
+                  className="fa-solid fa-x"
+                  onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
+                ></i>
                 <p>oh no!</p>
                 <p>
                   You missed your last goal! Do you want to re-set it to your
@@ -159,7 +165,10 @@ const Header = () => {
         ) : (
           <div className={!isActive ? "hide" : ""}>
             <Link to="/dashboard">
-              <i className="fa-solid fa-x" onClick={removePopUp}></i>
+              <i
+                className="fa-solid fa-x"
+                onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
+              ></i>
             </Link>
             <p>welcome!</p>
             <p>We are so excited for you to join ready, set, goal!</p>
@@ -176,11 +185,3 @@ const Header = () => {
 };
 
 export default Header;
-{
-  /* <div>
-<p>Congrats! You completed your last goal!</p>
-<Link to={`/users/me/${user!.uid}`}>
-  <p>LET'S GO!</p>
-</Link>
-</div> */
-}

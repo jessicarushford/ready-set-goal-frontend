@@ -65,11 +65,24 @@ export const addComment = async (
   ).data;
 };
 
+//delete a comment
+export const deleteComment = async (id: string, uid: string): Promise<Goal> => {
+  return (
+    await axios.put(
+      `${baseURL}/${encodeURIComponent(id)}/delete-comment/${encodeURIComponent(
+        uid
+      )}`
+    )
+  ).data;
+};
+
+//check in the checkbox
 export const goalIsCompleted = async (id: string): Promise<Goal> => {
   return (await axios.put(`${baseURL}/completed/${encodeURIComponent(id)}`))
     .data;
 };
 
+//uncheck in the checkbox
 export const goalIsMissed = async (id: string): Promise<Goal> => {
   return (await axios.put(`${baseURL}/missed/${encodeURIComponent(id)}`)).data;
 };

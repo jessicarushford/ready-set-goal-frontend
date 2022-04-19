@@ -4,6 +4,7 @@ import Goal from "../models/Goal";
 import {
   addComment,
   addUidToLikes,
+  deleteComment,
   getGoalById,
   takeOffUidFromLikes,
 } from "../services/GoalsService";
@@ -33,6 +34,11 @@ const DetailsRoute = () => {
   };
 
   //can delete a comment only if the writer of the comment is the current user(me)
+  const removeComment = (): void => {
+    deleteComment(id!, user?.uid!).then(() => {
+      getAndSetGoal(id!);
+    });
+  };
 
   const addLike = (userUid: string): void => {
     addUidToLikes(id!, userUid).then(() => {
@@ -67,6 +73,7 @@ const DetailsRoute = () => {
           <li className="comment">
             <p className="comment-name">{comment.name}:</p>
             <p className="comment-text">{comment.commentText}</p>
+            <i className="fa-regular fa-trash-can" onClick={removeComment}></i>
           </li>
         ))}
       </ul>

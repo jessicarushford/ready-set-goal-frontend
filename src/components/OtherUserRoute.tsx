@@ -2,7 +2,11 @@ import "./OtherUserRoute.css";
 import Goal from "../models/Goal";
 import { useContext, useEffect, useState } from "react";
 import GoalCard from "./GoalCard";
-import { getGoals } from "../services/GoalsService";
+import {
+  addUidToLikes,
+  getGoals,
+  takeOffUidFromLikes,
+} from "../services/GoalsService";
 import { useNavigate, useParams } from "react-router-dom";
 import TodaysCard from "./TodaysCard";
 import {
@@ -34,6 +38,25 @@ const OtherUserRoute = () => {
   };
   const navigate = useNavigate();
 
+  const getAndSetTodaysGoal = (params: QueryStringParams) => {
+    getGoals(params).then((response) => {
+      setGoals(response);
+      const todaysgoal = response.find((goal) => goal.date === fullDate);
+      setTodaysGoal(todaysgoal);
+    });
+  };
+
+  const addLike = (userUid: string): void => {
+    addUidToLikes(todaysGoal!._id!, userUid).then(() => {
+      getAndSetTodaysGoal(params);
+    });
+  };
+
+  const unLike = (userUid: string): void => {
+    takeOffUidFromLikes(todaysGoal!._id!, userUid).then(() =>
+      getAndSetTodaysGoal(params)
+    );
+  };
   //get the current user and set their friends
   const getAndSetFriends = (userUid: string): void => {
     getUserByUid(userUid).then((response) => {
@@ -77,12 +100,9 @@ const OtherUserRoute = () => {
   }, [otherUserUid]);
 
   //useEffect the get params of type QueryStringParams which has other user's uid to use get goals by uid
+
   useEffect(() => {
-    getGoals(params).then((response) => {
-      setGoals(response);
-      const todaysgoal = response.find((goal) => goal.date === fullDate);
-      setTodaysGoal(todaysgoal);
-    });
+    getAndSetTodaysGoal(params);
   }, []);
 
   return (
@@ -112,7 +132,11 @@ const OtherUserRoute = () => {
       <h3>TODAY'S GOAL</h3>
 
       {todaysGoal ? (
-        <TodaysCard todaysGoal={todaysGoal} />
+        <TodaysCard
+          todaysGoal={todaysGoal}
+          onAddLike={addLike}
+          onUnLike={unLike}
+        />
       ) : (
         <p>NO TODAY'S GOAL YET!</p>
       )}
