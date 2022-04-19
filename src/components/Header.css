@@ -65,3 +65,48 @@
   transition-delay: 0s, 0s, 0.5s;
   z-index: 1;
 }
+
+.Header .pop-up-container {
+  background-color: #fff;
+  width: 60%;
+  box-shadow: 6px 6px 10px #979595;
+}
+
+.Header .fa-x {
+  color: #e2a39b;
+  font-size: 36px;
+  text-align: right;
+  margin: 10px;
+}
+
+.Header .fa-x:hover {
+  text-shadow: 4px 4px 8px #979595;
+}
+
+.Header .greeting-p {
+  font-family: "Brittany Signature", sans-serif;
+  font-size: 75px;
+  color: #484848;
+  text-align: center;
+  text-shadow: 4px 4px 5px #979595;
+  margin: 30px 0px;
+}
+
+.Header .pop-up-p {
+  text-align: center;
+  width: 75%;
+  font-size: 20px;
+}
+
+.Header .pop-up-btn {
+  font-size: 20px;
+  background-color: #658b92;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px 0px 40px 0px;
+}
+
+.Header .pop-up-btn:hover {
+  box-shadow: 4px 4px 8px #979595;
+}
