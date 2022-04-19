@@ -5,9 +5,11 @@ import "./NewGoalForm.css";
 
 interface Props {
   onAddGoal: (newGoal: Goal) => void;
+  detailCategory: string;
+  detailGoalText: string;
 }
 
-const NewGoalForm = ({ onAddGoal }: Props) => {
+const NewGoalForm = ({ onAddGoal, detailCategory, detailGoalText }: Props) => {
   const [category, setCategory] = useState("");
   const [goalText, setGoalText] = useState("");
 
@@ -42,7 +44,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
         name="category"
         id="category"
         className="form-content"
-        value={category}
+        value={detailCategory ? detailCategory : category}
         onChange={(e) => setCategory(e.target.value)}
         required
       >
@@ -63,7 +65,7 @@ const NewGoalForm = ({ onAddGoal }: Props) => {
         cols={30}
         rows={10}
         maxLength={80}
-        value={goalText}
+        value={detailGoalText ? detailGoalText : goalText}
         placeholder="Today my goal is to ..."
         required
         onChange={(e) => setGoalText(e.target.value)}
