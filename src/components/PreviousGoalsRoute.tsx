@@ -126,7 +126,7 @@ const PreviousGoalsRoute = () => {
             <option value="personal">Personal</option>
             <option value="other">Other</option>
           </select>
-          <i className="fa-solid fa-angle-down"></i>
+          {/* <i className="fa-solid fa-angle-down"></i> */}
         </div>
         <div>
           <input
@@ -152,7 +152,9 @@ const PreviousGoalsRoute = () => {
           </select>
         </div>
       </form>
-      <button onClick={submitHandler}>Submit</button>
+      <button onClick={submitHandler} className="submit-btn">
+        SUBMIT
+      </button>
       <ul>
         {filterGoals().map((goal) => (
           <GoalCard key={goal._id} goal={goal} />
