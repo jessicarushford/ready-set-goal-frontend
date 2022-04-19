@@ -121,7 +121,7 @@ const Header = () => {
           </nav>
         </div>
       </div>
-      <div>
+      <div className="pop-up-container">
         {showPopUp && goals.length ? (
           <>
             {goals[goals.length - 1].completed && (
@@ -130,10 +130,11 @@ const Header = () => {
                   className="fa-solid fa-x"
                   onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
                 ></i>
-                <p>congrats!</p>
-                <p>You completed your last goal!</p>
+                <p className="greeting-p">congrats!</p>
+                <p className="pop-up-p">You completed your last goal!</p>
                 <Link to={`/users/me/${user?.uid}`}>
                   <button
+                    className="pop-up-btn"
                     onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
                   >
                     LET'S GO!
@@ -147,16 +148,17 @@ const Header = () => {
                   className="fa-solid fa-x"
                   onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
                 ></i>
-                <p>oh no!</p>
-                <p>
+                <p className="greeting-p">oh no!</p>
+                <p className="pop-up-p">
                   You missed your last goal! Do you want to re-set it to your
                   Today's Goal?
                 </p>
                 <Link to={`/users/me/${user?.uid}`}>
                   <button
+                    className="pop-up-btn"
                     onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
                   >
-                    YES PLEASE
+                    YES, PLEASE!
                   </button>
                 </Link>
               </div>
@@ -170,11 +172,16 @@ const Header = () => {
                 onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
               ></i>
             </Link>
-            <p>welcome!</p>
-            <p>We are so excited for you to join ready, set, goal!</p>
+            <p className="greeting-p">welcome!</p>
+            <p className="pop-up-p">
+              We are so excited for you to join ready, set, goal!
+            </p>
             <Link to={`/users/me/${user?.uid}`}>
-              <button onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}>
-                LET'S GET STARTED
+              <button
+                className="pop-up-btn"
+                onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
+              >
+                LET'S GET STARTED!
               </button>
             </Link>
           </div>
