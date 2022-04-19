@@ -1,0 +1,57 @@
+.PreviousGoalsRoute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PreviousGoalsRoute form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PreviousGoalsRoute .SearchBar {
+  color: #fff;
+  background-color: #e8a183ba;
+  border: none;
+  padding: 10px 20px;
+  /* width: 50%; */
+}
+
+.PreviousGoalsRoute .fa-magnifying-glass {
+  color: white;
+  font-size: 20px;
+}
+
+.PreviousGoalsRoute .fa-magnifying-glass:hover {
+  text-shadow: 4px 4px 6px #686666;
+}
+
+/* .PreviousGoalsRoute .category {
+  color: #fff;
+  background-color: #e8a183ba;
+  border: none;
+  padding: 10px 20px;
+}
+
+/* .PreviousGoalsRoute .date {
+  color: #fff;
+  font-family: "Gothic A1", sans-serif;
+  background-color: #e8a183ba;
+  border: none;
+  padding: 10px 20px;
+} */
+
+.PreviousGoalsRoute .submit-btn {
+  color: #fff;
+  background-color: #658b92;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  width: 50%;
+  font-size: 18px;
+}
+
+.PreviousGoalsRoute .submit-btn:hover {
+  box-shadow: 4px 4px 6px #686666;
+}
