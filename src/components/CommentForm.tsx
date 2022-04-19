@@ -16,6 +16,7 @@ const CommentForm = ({ onAddComment }: Props) => {
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
     const newComment: Comment = {
+      uid: user?.uid!,
       name: user?.displayName!,
       commentText,
     };
