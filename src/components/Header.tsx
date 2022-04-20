@@ -34,11 +34,15 @@ const Header = () => {
     setIsActive(false);
   };
 
+  // goals[goals.length -1]
+
   useEffect(() => {
     if (user) {
       getUserByUid(user.uid).then((response) => {
         if (!response) {
           createNewUser(user.uid, user.displayName!).then(() => {});
+          setIsActive(true);
+          setShowPopUp(true);
         } else {
           if (response.lastLogin !== todaysDate) {
             console.log(response.lastLogin);
@@ -121,11 +125,11 @@ const Header = () => {
           </nav>
         </div>
       </div>
-      <div className="pop-up-container">
+      <div className={`pop-up-container  ${!isActive ? "hide" : ""}`}>
         {showPopUp && goals.length ? (
           <>
             {goals[goals.length - 1].completed && (
-              <div className={!isActive ? "hide" : ""}>
+              <div className={`pop-up`}>
                 <i
                   className="fa-solid fa-x"
                   onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
@@ -143,7 +147,7 @@ const Header = () => {
               </div>
             )}
             {!goals[goals.length - 1].completed && (
-              <div className={!isActive ? "hide" : ""}>
+              <div className={`pop-up`}>
                 <i
                   className="fa-solid fa-x"
                   onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
@@ -153,7 +157,10 @@ const Header = () => {
                   You missed your last goal! Do you want to re-set it to your
                   Today's Goal?
                 </p>
-                <Link to={`/users/me/${user?.uid}`}>
+                <Link
+                  to={`/users/me/${user?.uid}`}
+                  state={{ goal: goals[goals.length - 1] }}
+                >
                   <button
                     className="pop-up-btn"
                     onClick={() => addLastLoginAndRemovePopUp(user?.uid!)}
@@ -165,7 +172,7 @@ const Header = () => {
             )}
           </>
         ) : (
-          <div className={!isActive ? "hide" : ""}>
+          <div className={`pop-up`}>
             <Link to="/dashboard">
               <i
                 className="fa-solid fa-x"

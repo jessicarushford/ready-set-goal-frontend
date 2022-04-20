@@ -5,20 +5,19 @@ import "./NewGoalForm.css";
 
 interface Props {
   onAddGoal: (newGoal: Goal) => void;
-  detailCategory: string;
-  detailGoalText: string;
+  detailGoal?: Goal | null;
 }
 
-const NewGoalForm = ({ onAddGoal, detailCategory, detailGoalText }: Props) => {
-  const [category, setCategory] = useState("");
-  const [goalText, setGoalText] = useState("");
-
+const NewGoalForm = ({ onAddGoal, detailGoal }: Props) => {
+  const [category, setCategory] = useState(detailGoal?.category || "");
+  const [goalText, setGoalText] = useState(detailGoal?.goalText || "");
   const { user } = useContext(AuthContext);
-
   const newDate: Date = new Date();
-  const year = newDate.getFullYear();
-  const month = newDate.getMonth() + 1;
-  const date = newDate.getDate();
+  const year: number = newDate.getFullYear();
+  const month: number = newDate.getMonth() + 1;
+  const date: number = newDate.getDate();
+
+  console.log(newDate.getUTCMonth());
 
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
@@ -44,7 +43,7 @@ const NewGoalForm = ({ onAddGoal, detailCategory, detailGoalText }: Props) => {
         name="category"
         id="category"
         className="form-content"
-        value={detailCategory ? detailCategory : category}
+        value={category}
         onChange={(e) => setCategory(e.target.value)}
         required
       >
@@ -65,7 +64,7 @@ const NewGoalForm = ({ onAddGoal, detailCategory, detailGoalText }: Props) => {
         cols={30}
         rows={10}
         maxLength={80}
-        value={detailGoalText ? detailGoalText : goalText}
+        value={goalText}
         placeholder="Today my goal is to ..."
         required
         onChange={(e) => setGoalText(e.target.value)}

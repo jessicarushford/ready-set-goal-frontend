@@ -8,39 +8,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.PreviousGoalsRoute .SearchBar {
-  color: #fff;
-  background-color: #e8a183ba;
-  border: none;
-  padding: 10px 20px;
-  /* width: 50%; */
+  justify-content: center;
+  position: relative;
+  background-color: rgba(228, 228, 228, 0.4);
+  height: 350px;
 }
 
 .PreviousGoalsRoute .fa-magnifying-glass {
   color: white;
   font-size: 20px;
+  position: absolute;
+  right: 20px;
+  top: 42px;
 }
 
 .PreviousGoalsRoute .fa-magnifying-glass:hover {
   text-shadow: 4px 4px 6px #686666;
 }
 
-/* .PreviousGoalsRoute .category {
-  color: #fff;
-  background-color: #e8a183ba;
-  border: none;
-  padding: 10px 20px;
+.PreviousGoalsRoute .select {
+  display: flex;
+  flex-direction: column;
 }
-
-/* .PreviousGoalsRoute .date {
+.PreviousGoalsRoute #searchBar,
+.PreviousGoalsRoute #category,
+.PreviousGoalsRoute #date,
+.PreviousGoalsRoute #completed {
   color: #fff;
-  font-family: "Gothic A1", sans-serif;
   background-color: #e8a183ba;
   border: none;
   padding: 10px 20px;
-} */
+  box-sizing: border-box;
+  font-family: "Gothic A1", sans-serif;
+  margin: 10px;
+  width: 300px;
+  font-size: 18px;
+}
 
 .PreviousGoalsRoute .submit-btn {
   color: #fff;
@@ -48,10 +51,39 @@
   border: none;
   padding: 10px 20px;
   margin: 10px;
-  width: 50%;
+  width: 300px;
   font-size: 18px;
 }
 
 .PreviousGoalsRoute .submit-btn:hover {
   box-shadow: 4px 4px 6px #686666;
+}
+
+.PreviousGoalsRoute ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .PreviousGoalsRoute form {
+    height: 270px;
+  }
+
+  .PreviousGoalsRoute #searchBar {
+    width: 400px;
+  }
+  .PreviousGoalsRoute .fa-magnifying-glass {
+    right: 110px;
+    top: 61px;
+  }
+  .PreviousGoalsRoute .select {
+    flex-direction: row;
+  }
+
+  .PreviousGoalsRoute #category,
+  .PreviousGoalsRoute #date,
+  .PreviousGoalsRoute #completed {
+    width: 180px;
+  }
 }
