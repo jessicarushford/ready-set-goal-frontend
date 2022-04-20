@@ -15,6 +15,7 @@
   color: white;
   text-align: center;
   font-size: 20px;
+  padding: 5px 10px;
 }
 
 .SummaryRoute .btn {
@@ -28,26 +29,32 @@
   box-shadow: 10px 10px 10px -10px rgb(97, 97, 97);
 }
 
-.SummaryRoute .achieved {
+.SummaryRoute .onAchieved {
   background-color: #658b92;
   border: none;
   color: white;
 }
 
-.SummaryRoute .onAchieved {
+.SummaryRoute .achieved {
   background: none;
   border: 3px solid #658b92;
   color: #484848;
 }
 
-.SummaryRoute .onMissed {
+.SummaryRoute .missed {
   border: solid 3px #e8a283;
   background: none;
   color: #484848;
 }
 
-.SummaryRoute .missed {
+.SummaryRoute .onMissed {
   border: none;
   background-color: #e8a283;
   color: #fff;
+}
+
+@media only screen and (min-width: 768px) {
+  .SummaryRoute .summary-text p {
+    padding: 0 25px;
+  }
 }
