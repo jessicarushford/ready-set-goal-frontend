@@ -143,12 +143,15 @@ const OtherUserRoute = () => {
 
       <h3>PREVIOUS GOALS</h3>
       <div className="btns">
-        <button className="achieved btn" onClick={() => setAchieved(true)}>
-          ACHIEVED
-        </button>
-        <button className="missed btn" onClick={() => setAchieved(false)}>
-          MISSED
-        </button>
+        {achieved ? (
+          <button className="achieved btn" onClick={() => setAchieved(false)}>
+            ACHIEVED
+          </button>
+        ) : (
+          <button className="missed btn" onClick={() => setAchieved(true)}>
+            MISSED
+          </button>
+        )}
       </div>
       <ul>
         {goals
