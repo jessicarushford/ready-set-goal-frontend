@@ -33,7 +33,6 @@ const MeRoute = () => {
     uid,
   };
   const location: any = useLocation();
-  console.log(location.state.goal.category);
 
   //get all goals of a user with a given uid and set goals and set today's goal where todays's date and goal's date are matched
   const getAndSetTodaysGoal = (params: QueryStringParams) => {
@@ -100,8 +99,8 @@ const MeRoute = () => {
           ) : (
             <NewGoalForm
               onAddGoal={addTodaysGoal}
-              detailCategory={location.state.goal.category}
-              detailGoalText={location.state.goal.goalText}
+              detailCategory={location?.state?.goal?.category}
+              detailGoalText={location?.state?.goal?.goalText}
             />
           )}
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>
