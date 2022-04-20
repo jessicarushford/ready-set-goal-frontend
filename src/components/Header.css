@@ -67,16 +67,34 @@
 }
 
 .Header .pop-up-container {
-  background-color: #fff;
-  width: 60%;
+  background-color: rgba(53, 52, 52, 0.545);
+  z-index: 6;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
   box-shadow: 6px 6px 10px #979595;
+}
+
+.Header .pop-up {
+  width: 270px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Header .fa-x {
   color: #e2a39b;
   font-size: 36px;
-  text-align: right;
   margin: 10px;
+  position: absolute;
+  right: 10px;
 }
 
 .Header .fa-x:hover {
@@ -109,4 +127,10 @@
 
 .Header .pop-up-btn:hover {
   box-shadow: 4px 4px 8px #979595;
+}
+
+@media only screen and (min-width: 768px) {
+  .Header .pop-up {
+    width: 350px;
+  }
 }

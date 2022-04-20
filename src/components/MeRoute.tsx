@@ -99,8 +99,7 @@ const MeRoute = () => {
           ) : (
             <NewGoalForm
               onAddGoal={addTodaysGoal}
-              detailCategory={location?.state?.goal?.category}
-              detailGoalText={location?.state?.goal?.goalText}
+              detailGoal={location?.state?.goal}
             />
           )}
           <Link to={`/users/me/previous/${encodeURIComponent(user!.uid)}`}>

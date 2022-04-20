@@ -31,6 +31,7 @@ const PreviousGoalsRoute = () => {
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const [filterDate, setFilterDate] = useState("");
+
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
     const params: any = {
@@ -41,7 +42,6 @@ const PreviousGoalsRoute = () => {
     };
 
     navigate(`/users/me/previous/${user?.uid!}?${new URLSearchParams(params)}`);
-
     setKeyword("");
     setCategory("");
     setFilterDate("");
@@ -57,6 +57,12 @@ const PreviousGoalsRoute = () => {
     });
   }, []);
 
+  //make month(one digit) to Two digit with 0 when it's 1~9.
+  const toTwoDigits = (num: number): any => {
+    return num.toString().padStart(2, "0");
+  };
+
+  //fuction to filter goals with searchParams only if they are truthy.
   const filterGoals = () => {
     let filteredArray = goals;
     if (goalKeyword) {
@@ -71,19 +77,19 @@ const PreviousGoalsRoute = () => {
     }
     if (goalFilterDate) {
       filteredArray = filteredArray.filter(
-        (goal) => goal.date === goalFilterDate
+        (goal) =>
+          `${goal.year}-${toTwoDigits(parseInt(goal.month) + 1)}-${toTwoDigits(
+            parseInt(goal.day)
+          )}` === goalFilterDate
       );
-      // if (completed) {
-      //   // if (goalComplete === "achieved") {
-      //   //   let newGoalComplete: boolean = goalComplete
-      //   //   newGoalComplete = true
-      //   // }
-
-      //   filteredArray = filteredArray.filter(
-      //     (goal) => goal.completed === goalComplete
-      //   );
-      // }
     }
+    if (goalComplete) {
+      const boolean: boolean = goalComplete === "achieved" ? true : false;
+      filteredArray = filteredArray.filter(
+        (goal) => goal.completed === boolean
+      );
+    }
+
     console.log(filteredArray);
     return filteredArray;
   };
@@ -96,10 +102,10 @@ const PreviousGoalsRoute = () => {
         <div>
           <input
             type="text"
-            className="SearchBar"
+            className="searchBar"
             placeholder="Search"
-            name="SearchBar"
-            id="SearchBar"
+            name="searchBar"
+            id="searchBar"
             onChange={(e) => setKeyword(e.target.value)}
             value={keyword}
           ></input>
@@ -109,7 +115,7 @@ const PreviousGoalsRoute = () => {
           ></i>
         </div>
 
-        <div>
+        <div className="select">
           <select
             name="category"
             id="category"
@@ -127,8 +133,7 @@ const PreviousGoalsRoute = () => {
             <option value="other">Other</option>
           </select>
           {/* <i className="fa-solid fa-angle-down"></i> */}
-        </div>
-        <div>
+
           <input
             type="date"
             name="date"
@@ -136,8 +141,7 @@ const PreviousGoalsRoute = () => {
             value={filterDate}
             onChange={(e) => setFilterDate(e.target.value)}
           />
-        </div>
-        <div>
+
           <select
             name="completed"
             id="completed"
@@ -151,10 +155,9 @@ const PreviousGoalsRoute = () => {
             <option value="missed">Missed</option>
           </select>
         </div>
+        <button className="submit-btn">SUBMIT</button>
       </form>
-      <button onClick={submitHandler} className="submit-btn">
-        SUBMIT
-      </button>
+
       <ul>
         {filterGoals().map((goal) => (
           <GoalCard key={goal._id} goal={goal} />
