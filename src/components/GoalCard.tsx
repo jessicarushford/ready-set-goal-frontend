@@ -21,21 +21,10 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
   const day = date.getDate();
   const year = date.getFullYear();
   const fullDate = `${month}.${day}.${year}`;
-  const [testGoal, setTestGoal] = useState<Goal>(goal);
 
   const isUidInLikes = (goal: Goal, user: any): boolean => {
     return goal.likes!.some((like) => like === user.uid);
   };
-
-  useEffect(() => {
-    getGoalById(goal!._id!).then((response) => {
-      setTestGoal(response);
-    });
-  }, []);
-  //goal.name === user.displayName && there is no todays goal.
-  //click? => add newGoal
-
-  //timer -> use library 'date-fns'? maybe make another component
 
   return (
     <li className="GoalCard">
@@ -114,7 +103,12 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
       path === `/goals/details/${goal._id}` &&
       goal.date !== fullDate ? (
         <Link to={`/users/me/${user.uid}`} state={{ goal: goal }}>
-          <i className="fa-solid fa-circle-question"></i>
+          <i className="fa-solid fa-circle-question">
+            <span className="tooltiptext">
+              Do you want to re-try this goal? Click here to re-set this goal to
+              Today's Goal
+            </span>
+          </i>
         </Link>
       ) : (
         <></>

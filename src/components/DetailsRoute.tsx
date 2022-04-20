@@ -75,7 +75,7 @@ const DetailsRoute = () => {
           <li className="comment">
             <p className="comment-name">{comment.name}:</p>
             <p className="comment-text">{comment.commentText}</p>
-            <i className="fa-regular fa-trash-can" onClick={removeComment}></i>
+            {/* <i className="fa-regular fa-trash-can" onClick={removeComment}></i> */}
           </li>
         ))}
       </ul>

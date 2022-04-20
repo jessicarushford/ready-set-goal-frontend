@@ -102,3 +102,78 @@
   top: 80px;
   left: 10px;
 }
+
+.GoalCard .fa-circle-question {
+  position: absolute;
+  right: 8px;
+  top: 20px;
+  color: #484848;
+  font-size: 25px;
+}
+
+.GoalCard .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #658b92;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  font-size: 15px;
+  font-family: "Gothic A1", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 20px;
+  z-index: 1;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(2px);
+}
+
+.GoalCard:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* .GoalCard .tooltip {
+  position: relative;
+}
+
+.GoalCard .tooltip:before,
+.GoalCard .tooltip:after {
+  position: absolute;
+  content: "";
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.GoalCard .tooltip:before {
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #658b92 transparent;
+  top: 41px;
+  transform: translateY(20px);
+}
+
+.GoalCard .tooltip:after {
+  content: attr(data-tooltip);
+  background: #658b92;
+  color: white;
+  width: 80px;
+  height: 25px;
+  font-size: 10px;
+  font-weight: 400;
+  top: 100%;
+  left: 0px;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transform: translateY(20px);
+}
+
+.GoalCard .tooltip:hover:before,
+.GoalCard .tooltip:hover:after {
+  opacity: 1;
+  transform: translateY(-2px);
+} */
