@@ -1,6 +1,6 @@
 import { getDaysInMonth } from "date-fns";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Goal from "../models/Goal";
 import QueryStringParams from "../models/QueryStringParams";
@@ -8,13 +8,15 @@ import { getGoals } from "../services/GoalsService";
 import "./Calendar.css";
 
 interface Props {
-  todaysGoal: Goal | undefined;
+  todaysGoal?: Goal | undefined;
 }
 
 // Route to details of goal if clicked
 const Calendar = ({ todaysGoal }: Props) => {
   const [goals, setGoals] = useState<Goal[]>([]);
   const uid: string | undefined = useParams().uid;
+  const location = useLocation();
+  const path = location.pathname;
   const newDate: Date = new Date();
   const date = newDate.getDate();
   const year = newDate.getFullYear();
@@ -35,13 +37,17 @@ const Calendar = ({ todaysGoal }: Props) => {
     "december",
   ];
   const monthName = monthNames[month];
+  const lastYear = year - 1;
   const params: QueryStringParams = {
     uid,
   };
+  const lastMonthName = month === 0 ? monthNames[11] : monthNames[month - 1];
 
+  const daysInAMonth = getDaysInMonth(new Date(year, month));
+
+  //Calendar this month
   const goalsThisMonth = goals.filter((goal) => parseInt(goal.month) === month);
   const calendarCells = [];
-  const daysInAMonth = getDaysInMonth(new Date(year, month));
   for (let i = 0; i < daysInAMonth; i++) {
     const index: number = goalsThisMonth.findIndex(
       (goal) => parseInt(goal.day) === i + 1
@@ -53,6 +59,22 @@ const Calendar = ({ todaysGoal }: Props) => {
     }
   }
   console.log(calendarCells);
+
+  //calendar last month
+  const goalsLastMonth = goals.filter(
+    (goal) => parseInt(goal.month) === month - 1
+  );
+  const lastMonthCalendarCells = [];
+  for (let i = 0; i < daysInAMonth; i++) {
+    const index: number = goalsLastMonth.findIndex(
+      (goal) => parseInt(goal.day) === i + 1
+    );
+    if (index === -1) {
+      lastMonthCalendarCells.push(null);
+    } else {
+      lastMonthCalendarCells.push(goals[index]);
+    }
+  }
 
   useEffect(() => {
     getGoals(params).then((response) => {
@@ -86,6 +108,37 @@ const Calendar = ({ todaysGoal }: Props) => {
             );
           })}
       </ul>
+      {lastMonthCalendarCells && path === `/users/me/summary/${uid}` ? (
+        <>
+          <p className="monthName">
+            {month === 0
+              ? `${lastMonthName} ${lastYear}`
+              : `${lastMonthName} ${year}`}
+          </p>
+          <ul>
+            {lastMonthCalendarCells.map((cell, index) => {
+              return cell ? (
+                <Link to={`/goals/details/${cell._id}`}>
+                  <li className="tooltip" data-tooltip="go to the detail page">
+                    <p className="index"> {index + 1}</p>
+                    {cell.completed ? (
+                      <i className="fa-solid fa-star"></i>
+                    ) : (
+                      <i className="fa-solid fa-x"></i>
+                    )}
+                  </li>
+                </Link>
+              ) : (
+                <li>
+                  <p className="index">{index + 1}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
