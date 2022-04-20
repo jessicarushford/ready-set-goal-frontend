@@ -1,0 +1,53 @@
+.SummaryRoute {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SummaryRoute .summary-text {
+  background-color: #b5957e9c;
+  width: 70%;
+  margin: 10px 0 30px 0;
+}
+
+.SummaryRoute .summary-text p {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.SummaryRoute .btn {
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  margin: 0 10px 20px 0;
+}
+
+.SummaryRoute .btn:hover {
+  box-shadow: 10px 10px 10px -10px rgb(97, 97, 97);
+}
+
+.SummaryRoute .achieved {
+  background-color: #658b92;
+  border: none;
+  color: white;
+}
+
+.SummaryRoute .onAchieved {
+  background: none;
+  border: 3px solid #658b92;
+  color: #484848;
+}
+
+.SummaryRoute .onMissed {
+  border: solid 3px #e8a283;
+  background: none;
+  color: #484848;
+}
+
+.SummaryRoute .missed {
+  border: none;
+  background-color: #e8a283;
+  color: #fff;
+}
