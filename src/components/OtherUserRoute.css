@@ -46,8 +46,20 @@
   color: white;
 }
 
-.OtherUserRoute .missed {
+.OtherUserRoute .onAchieved {
+  background: none;
+  border: 3px solid #658b92;
+  color: #484848;
+}
+
+.OtherUserRoute .onMissed {
   border: solid 3px #e8a283;
   background: none;
   color: #484848;
+}
+
+.OtherUserRoute .missed {
+  border: none;
+  background-color: #e8a283;
+  color: #fff;
 }
