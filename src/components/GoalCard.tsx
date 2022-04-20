@@ -92,7 +92,7 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
           ) : (
             <>
               <i className="fa-solid fa-star goal-result"></i>
-              <p className="result-text complete">COMPLETE</p>
+              <p className="result-text complete">ACHIEVED</p>
             </>
           )
         ) : (

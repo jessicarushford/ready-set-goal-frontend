@@ -6,6 +6,7 @@ import Goal from "../models/Goal";
 import QueryStringParams from "../models/QueryStringParams";
 import { getGoals } from "../services/GoalsService";
 import Calendar from "./Calendar";
+import PieChart from "./PieChart";
 import "./SummaryRoute.css";
 
 const SummaryRoute = () => {
@@ -29,12 +30,110 @@ const SummaryRoute = () => {
   //multiple messages bsed on increase and decrease by last month
 
   const lastMonthGoals: Goal[] = goals.filter(
-    (goal) => parseInt(goal.month) === lastMonth
+    (goal) => parseInt(goal.month) === lastMonth && parseInt(goal.year) === year
   );
 
   const thisMonthGoals: Goal[] = goals.filter(
-    (goal) => parseInt(goal.month) === month
+    (goal) => parseInt(goal.month) === month && parseInt(goal.year) === year
   );
+
+  const nutritionAchieved: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "nutrition" && cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const nutritionMissed: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "nutrition" && !cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const exerciseAchieved: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "exercise" && cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const exerciseMissed: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "exercise" && !cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const leisureAchieved: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "leisure" && cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const leisureMissed: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "leisure" && !cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const financialAchieved: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "financial" && cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const financialMissed: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "financial" && !cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const personalAchieved: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "personal" && cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const personalMissed: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "personal" && !cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const otherAchieved: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "other" && cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  const otherMissed: number = thisMonthGoals.reduce((prev, cur) => {
+    if (cur.category === "other" && !cur.completed) {
+      return prev + 1;
+    } else {
+      return prev;
+    }
+  }, 0);
+
+  console.log(nutritionAchieved);
 
   const trueGoalsLastMonth: Goal[] = lastMonthGoals.filter(
     (goal) => goal.completed
@@ -60,7 +159,18 @@ const SummaryRoute = () => {
   const compareMonthPercentages = percentTrueThisMonth - percentTrueLastMonth;
   console.log(compareMonthPercentages);
 
-  //if >0 good job! =< 0 try harder!
+  // count for each category
+  // let nutritionCount = 0
+  // let excerciseCount = 0
+  // goals.map((goal)=>{
+  // if(goal.completed){}else{}
+  // if(goal.category === nurition){
+  // nutritionCount ++
+  //}
+  // if(goal.category === excercise ){}
+  //})
+
+  //goal.completed
 
   const getAndSetTodaysGoal = (params: QueryStringParams) => {
     getGoals(params).then((response) => {
@@ -93,21 +203,34 @@ const SummaryRoute = () => {
       <div className="btns">
         <button
           className={`btn ${achieved ? "onAchieved" : "achieved"}`}
-          onClick={() => setAchieved(false)}
+          onClick={() => setAchieved(true)}
         >
           ACHIEVED
         </button>
 
         <button
           className={`btn ${achieved ? "missed" : "onMissed"}`}
-          onClick={() => setAchieved(true)}
+          onClick={() => setAchieved(false)}
         >
           MISSED
         </button>
       </div>
-      <div>PIE CHART?</div>
+      <PieChart
+        achieved={achieved}
+        nutritionAchieved={nutritionAchieved}
+        nutritionMissed={nutritionMissed}
+        exerciseAchieved={exerciseAchieved}
+        exerciseMissed={exerciseMissed}
+        leisureAchieved={leisureAchieved}
+        leisureMissed={leisureMissed}
+        financialAchieved={financialAchieved}
+        financialMissed={financialMissed}
+        personalAchieved={personalAchieved}
+        personalMissed={personalMissed}
+        otherAchieved={otherAchieved}
+        otherMissed={otherMissed}
+      />
       <Calendar />
-      {/* previous month calendar */}
     </div>
   );
 };
