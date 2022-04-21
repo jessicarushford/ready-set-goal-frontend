@@ -1,4 +1,5 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Goal from "../models/Goal";
@@ -160,7 +161,9 @@ const PreviousGoalsRoute = () => {
 
       <ul>
         {filterGoals().map((goal) => (
-          <GoalCard key={goal._id} goal={goal} />
+          <Link to={`/goals/details/${goal._id}`}>
+            <GoalCard key={goal._id} goal={goal} />
+          </Link>
         ))}
       </ul>
     </div>
