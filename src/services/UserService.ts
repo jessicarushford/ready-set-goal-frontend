@@ -1,5 +1,6 @@
 import axios from "axios";
 import Friend from "../models/Friend";
+import LastLogin from "../models/LastLogin";
 import User from "../models/User";
 
 const baseURL: string = process.env.REACT_APP_USERS_API_URL || "";
@@ -42,6 +43,12 @@ export const deleteFriend = async (
   ).data;
 };
 
-export const addLastLogin = async (uid: string): Promise<void> => {
-  return await axios.put(`${baseURL}/lastLogin/${encodeURIComponent(uid)}`);
+export const addLastLogin = async (
+  uid: string,
+  lastLogin: LastLogin
+): Promise<void> => {
+  return await axios.put(
+    `${baseURL}/lastLogin/${encodeURIComponent(uid)}`,
+    lastLogin
+  );
 };

@@ -157,7 +157,7 @@ const SummaryRoute = () => {
 
   //use in paragragh // achievement statud this month
   const percentTrueThisMonth = Math.round(
-    (trueGoalsThisMonth.length / daysInThisMonth) * 100
+    (trueGoalsThisMonth.length / date) * 100
   );
   console.log(percentTrueThisMonth);
 
