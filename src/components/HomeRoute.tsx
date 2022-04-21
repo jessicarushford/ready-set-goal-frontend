@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import { addLastLogin } from "../services/UserService";
 import grayLogo from "../assets/logos/ready-set-goal-gray-logo.png";
 
 // Login + Dashboard (Quote + Cards)
@@ -20,8 +19,10 @@ const HomeRoute = () => {
     <div className="HomeRoute">
       <img src={grayLogo} alt="Logo" />
       <div className="welcome">
-        <p>Keep your motivation with simple, daily goals.</p>
-        <p>We are always rooting for you.</p>
+        <p>Keep your motivation</p>
+        <p>with simple, daily goals.</p>
+        <p>We are always rooting</p>
+        <p>for you.</p>
       </div>
 
       <button className="login-btn" onClick={signInWithGoogle}>

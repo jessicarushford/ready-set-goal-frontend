@@ -1,10 +1,12 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import Goal from "../models/Goal";
-import note from "../assets/note.png";
+import note from "../assets/images/note.png";
+import notePurple from "../assets/images/notePurple.png";
+import noteGreen from "../assets/images/noteGreen.png";
+
 import "./GoalCard.css";
 import AuthContext from "../context/AuthContext";
-import { useContext, useEffect, useState } from "react";
-import { getGoalById } from "../services/GoalsService";
+import { useContext } from "react";
 
 interface Props {
   goal: Goal;
@@ -41,7 +43,7 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
             </Link>
           ) : user && path === `/goals/details/${goal._id}` ? (
             <div className="detail-goal">
-              <img src={note} alt="note for goal" />
+              <img src={notePurple} alt="note for goal" />
               <div className="goal-text">
                 <p>{goal.date}</p>
                 <p>{goal.goalText}</p>
@@ -70,7 +72,7 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
             </div>
           ) : (
             <>
-              <img src={note} alt="note for goal" />
+              <img src={noteGreen} alt="note for goal" />
               <div className="goal-text">
                 <p>{goal.date}</p>
                 <p>{goal.goalText}</p>

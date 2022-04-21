@@ -18,6 +18,17 @@
   padding: 5px 10px;
 }
 
+.SummaryRoute .pie-calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.SummaryRoute .btns {
+  display: flex;
+  justify-content: center;
+}
+
 .SummaryRoute .btn {
   width: 150px;
   height: 40px;
@@ -53,8 +64,36 @@
   color: #fff;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1000px) {
   .SummaryRoute .summary-text p {
     padding: 0 25px;
+  }
+
+  .SummaryRoute .pie-calendar {
+    flex-direction: row;
+  }
+  .SummaryRoute .btns {
+    display: flex;
+    justify-content: center;
+  }
+
+  .SummaryRoute .Calendar {
+    width: 500px;
+  }
+
+  .SummaryRoute .Calendar ul {
+    width: 460px;
+  }
+
+  .SummaryRoute .Calendar li {
+    width: 62px;
+    height: 62px;
+  }
+
+  .SummaryRoute .Calendar .index {
+    font-size: 20px;
+  }
+  .SummaryRoute .Calendar i {
+    font-size: 40px;
   }
 }

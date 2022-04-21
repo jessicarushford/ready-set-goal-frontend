@@ -24,19 +24,23 @@ const SummaryRoute = () => {
   const daysInThisMonth = getDaysInMonth(new Date(year, month));
   const daysInLastMonth = getDaysInMonth(new Date(year, month - 1));
   const lastMonth = month === 0 ? 11 : month - 1;
-  //this month how many true or false & last month's how many true or false
-  //calculte percentage of true
-  //compare trythy from last month and this month
-  //multiple messages bsed on increase and decrease by last month
 
-  const lastMonthGoals: Goal[] = goals.filter(
-    (goal) => parseInt(goal.month) === lastMonth && parseInt(goal.year) === year
-  );
+  //filter goals by month and year
+  const lastMonthGoals: Goal[] = goals.filter((goal) => {
+    if (lastMonth === 11) {
+      return (
+        parseInt(goal.month) === lastMonth && parseInt(goal.year) === year - 1
+      );
+    } else {
+      return parseInt(goal.month) === lastMonth && parseInt(goal.year) === year;
+    }
+  });
 
   const thisMonthGoals: Goal[] = goals.filter(
     (goal) => parseInt(goal.month) === month && parseInt(goal.year) === year
   );
 
+  //count the number of each catagory of this month and last month by achieved or missed. will be used in pie charts.
   const nutritionAchieved: number = thisMonthGoals.reduce((prev, cur) => {
     if (cur.category === "nutrition" && cur.completed) {
       return prev + 1;
@@ -135,6 +139,7 @@ const SummaryRoute = () => {
 
   console.log(nutritionAchieved);
 
+  //filter last and this month goals to get only achieved goals.
   const trueGoalsLastMonth: Goal[] = lastMonthGoals.filter(
     (goal) => goal.completed
   );
@@ -144,33 +149,21 @@ const SummaryRoute = () => {
   );
   console.log(trueGoalsThisMonth);
 
+  //achievement status last month
   const percentTrueLastMonth = Math.round(
     (trueGoalsLastMonth.length / daysInLastMonth) * 100
   );
   console.log(percentTrueLastMonth);
 
-  //use in paragragh
+  //use in paragragh // achievement statud this month
   const percentTrueThisMonth = Math.round(
     (trueGoalsThisMonth.length / daysInThisMonth) * 100
   );
   console.log(percentTrueThisMonth);
 
-  //use in paragragh
+  //use in paragragh //compare achievement status between this month and last month
   const compareMonthPercentages = percentTrueThisMonth - percentTrueLastMonth;
   console.log(compareMonthPercentages);
-
-  // count for each category
-  // let nutritionCount = 0
-  // let excerciseCount = 0
-  // goals.map((goal)=>{
-  // if(goal.completed){}else{}
-  // if(goal.category === nurition){
-  // nutritionCount ++
-  //}
-  // if(goal.category === excercise ){}
-  //})
-
-  //goal.completed
 
   const getAndSetTodaysGoal = (params: QueryStringParams) => {
     getGoals(params).then((response) => {
@@ -200,37 +193,42 @@ const SummaryRoute = () => {
           </p>
         )}
       </div>
-      <div className="btns">
-        <button
-          className={`btn ${achieved ? "onAchieved" : "achieved"}`}
-          onClick={() => setAchieved(true)}
-        >
-          ACHIEVED
-        </button>
+      <div className="pie-calendar">
+        <div className="btns-pie">
+          <div className="btns">
+            <button
+              className={`btn ${achieved ? "onAchieved" : "achieved"}`}
+              onClick={() => setAchieved(true)}
+            >
+              ACHIEVED
+            </button>
 
-        <button
-          className={`btn ${achieved ? "missed" : "onMissed"}`}
-          onClick={() => setAchieved(false)}
-        >
-          MISSED
-        </button>
+            <button
+              className={`btn ${achieved ? "missed" : "onMissed"}`}
+              onClick={() => setAchieved(false)}
+            >
+              MISSED
+            </button>
+          </div>
+
+          <PieChart
+            achieved={achieved}
+            nutritionAchieved={nutritionAchieved}
+            nutritionMissed={nutritionMissed}
+            exerciseAchieved={exerciseAchieved}
+            exerciseMissed={exerciseMissed}
+            leisureAchieved={leisureAchieved}
+            leisureMissed={leisureMissed}
+            financialAchieved={financialAchieved}
+            financialMissed={financialMissed}
+            personalAchieved={personalAchieved}
+            personalMissed={personalMissed}
+            otherAchieved={otherAchieved}
+            otherMissed={otherMissed}
+          />
+        </div>
+        <Calendar />
       </div>
-      <PieChart
-        achieved={achieved}
-        nutritionAchieved={nutritionAchieved}
-        nutritionMissed={nutritionMissed}
-        exerciseAchieved={exerciseAchieved}
-        exerciseMissed={exerciseMissed}
-        leisureAchieved={leisureAchieved}
-        leisureMissed={leisureMissed}
-        financialAchieved={financialAchieved}
-        financialMissed={financialMissed}
-        personalAchieved={personalAchieved}
-        personalMissed={personalMissed}
-        otherAchieved={otherAchieved}
-        otherMissed={otherMissed}
-      />
-      <Calendar />
     </div>
   );
 };
