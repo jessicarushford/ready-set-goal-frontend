@@ -1,11 +1,9 @@
 import "./TodaysCard.css";
-import note from "../assets/note.png";
+import notePink from "../assets/images/notePink.png";
 import Goal from "../models/Goal";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import { useLocation, useParams } from "react-router-dom";
-import QueryStringParams from "../models/QueryStringParams";
-import { getGoals } from "../services/GoalsService";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   todaysGoal: Goal;
@@ -35,7 +33,7 @@ const TodaysCard = ({
   return (
     <div className="TodaysCard">
       <div className="todays-card-container">
-        <img src={note} alt="note-for-goal" />
+        <img src={notePink} alt="note-for-goal" />
         <div className="goal-text">
           {user && path === `/users/me/${user!.uid}` ? (
             todaysGoal.completed ? (
