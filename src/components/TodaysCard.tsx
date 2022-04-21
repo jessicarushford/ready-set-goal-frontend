@@ -66,7 +66,7 @@ const TodaysCard = ({
             ></i>
           )}
           {todaysGoal ? (
-            <p className="count-likes">Likes: {todaysGoal.likes!.length}</p>
+            <p className="count-likes">{todaysGoal.likes!.length}</p>
           ) : (
             <p>Loading</p>
           )}

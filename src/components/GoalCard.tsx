@@ -65,7 +65,7 @@ const GoalCard = ({ goal, onAddLike, onUnLike }: Props) => {
               )}
 
               {goal ? (
-                <p className="count-likes">Likes: {goal.likes!.length}</p>
+                <p className="count-likes">{goal.likes!.length}</p>
               ) : (
                 <p>Loading</p>
               )}

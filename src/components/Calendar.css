@@ -60,6 +60,15 @@
   transform: translate(-50%, -35%);
 }
 
+.Calendar .fa-x {
+  background: #bf6450bd;
+  color: transparent;
+  text-shadow: 4px 3px 3px rgba(255, 255, 255, 0.2);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+}
+
 @media only screen and (min-width: 500px) and (max-width: 764px) {
   .Calendar {
     width: 400px;
