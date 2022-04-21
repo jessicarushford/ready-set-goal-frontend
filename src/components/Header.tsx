@@ -12,7 +12,6 @@ import {
 import QueryStringParams from "../models/QueryStringParams";
 import { getGoals } from "../services/GoalsService";
 import Goal from "../models/Goal";
-import LastLogin from "../models/LastLogin";
 
 const Header = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -29,12 +28,9 @@ const Header = () => {
   const params: QueryStringParams = {
     uid: user?.uid,
   };
-  const lastLogin: LastLogin = {
-    date: todaysDate,
-  };
 
   const addLastLoginAndRemovePopUp = (uid: string): void => {
-    addLastLogin(uid, lastLogin);
+    addLastLogin(uid, todaysDate);
     setIsActive(false);
   };
 
@@ -48,7 +44,7 @@ const Header = () => {
           setIsActive(true);
           setShowPopUp(true);
         } else {
-          if (response.lastLogin.date !== todaysDate) {
+          if (response.lastLogin !== todaysDate) {
             console.log(response.lastLogin);
             getGoals(params).then((response) => setGoals(response));
             setIsActive(true);

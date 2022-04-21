@@ -12,11 +12,14 @@
   width: 100%;
   color: #fff;
   font-family: "Gothic A1", sans-serif;
-  padding: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 20px;
 }
 
 .CommentForm textarea::placeholder {
   color: #484848;
+  font-size: 20px;
 }
 
 .CommentForm button {

@@ -195,6 +195,7 @@ const SummaryRoute = () => {
       </div>
       <div className="pie-calendar">
         <div className="btns-pie">
+          <h2>this month's pie chart</h2>
           <div className="btns">
             <button
               className={`btn ${achieved ? "onAchieved" : "achieved"}`}

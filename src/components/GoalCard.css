@@ -129,7 +129,7 @@
   transform: translateY(2px);
 }
 
-.GoalCard:hover .tooltiptext {
+.GoalCard .fa-circle-question:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
   transform: translateY(-2px);
